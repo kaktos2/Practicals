@@ -1,0 +1,23 @@
+---
+title: "DP_week5"
+author: "Cátia Reis"
+date: "06/04/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Data practical
+
+For this week's data practical, follow these steps (in which ever order works best for you and your data):
+
+* Find a data set of interest -- if it is not tabular, make it tabular
+* Load the data set and provide a description of its contents (what are the variables?) and data types
+* Transform the data set into long format if it is in wide format
+* Transform the data set into wide format if it is in long format
+* Make sure your data is in [tidy format](https://r4ds.had.co.nz/tidy-data.html)
+* Take a column in your data set and split the columns values into new columns with `separate()`
+* Take data from two or more columns and `unite()`
+* Create a plot using `ggplot()`

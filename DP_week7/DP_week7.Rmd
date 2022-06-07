@@ -1,0 +1,18 @@
+---
+title: "DP_week7"
+author: "Cátia Reis"
+date: "06/04/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+# Data practical
+
+* Find some data
+* Describe the data and its variables
+* Visualize the data
+* Formulate a hypothesis about the data
+* Perform a statistical test on the data (explain briefly why you are using the test you are using)
+* Report the results (do you accept or reject the null hypothesis?)

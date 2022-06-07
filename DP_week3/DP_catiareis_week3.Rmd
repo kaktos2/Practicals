@@ -1,0 +1,74 @@
+---
+title: "3_DP_CatiaReis"
+author: "Cátia Reis"
+date: "12/03/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# PRACTICAL 3 - DATA
+## Built-in R dataset
+
+In the following code-chunk, I load the built-in R dataset called "Titanic" in which we find information about passengers who have survived the Titanic :
+```{r}
+data("Titanic")
+summary(Titanic)
+```
+```{r}
+str(Titanic)
+```
+
+In the R output (see above), we see that there are four variables which are all character
+There are four variables in this data set :
+
+
+**R data types.** There are four CHARACTER variables in this data set : 
+
+  1. Class: 1st, 2nd, 3rd, crew
+  2. Sex: Male, Female
+  3. Age: Child, Adult
+  4. Survived: No, yes
+
+**Statistical data types.** These four variables are called NOMINAL QUALITATIVE variables. I hesitated to say that the "class" variable was *ordinal* because of the sequence "1st, 2nd, 3rd" but "crew" didn't quite fit in this. 
+
+
+## External dataset 
+
+Here, I load the dataset called "skate_soundtrack_data" which includes data on the **skate soundtracks**.
+```{r}
+library(readr)
+data_skate <- read.csv("https://raw.githubusercontent.com/the-pudding/data/master/skate-music/soundtrack_data.csv")
+str(data_skate)
+head(data_skate)
+```
+
+There are seven variables but the author of the data set says that the "genre_fake" column should be ignored as they used it for "testing purposes". 
+
+There are three INTEGER variables (R data type is given first, statistical type is given after the colon in the bullet list :
+
+- tote : quantitative discrete
+- year : qualitative
+- id : qualitative
+
+The remaining variables are character variables :
+
+- artist : qualitative nominal
+- group : qualitative nominal
+- genre_fake : qualitative nominal
+- genre : qualitative nominal
+
+```{r}
+library(dplyr)
+new_skate<-data_skate %>%
+select(artist, year,tote)
+```
+
+We can see that the Beatles was the most played band in 2008 in skate videos from the skatevideo website. <!--verify--> 
+
+
+
+
+

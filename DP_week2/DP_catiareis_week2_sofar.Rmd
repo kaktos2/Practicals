@@ -1,0 +1,75 @@
+---
+title: "DP_CatiaReis"
+author: "Cátia Reis"
+date: "`r Sys.Date()`"
+output: html_document
+bibliography: referencesDP2.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Silence 
+
+## Initial thoughts
+
+
+<!-- italics in next paragraph -->
+Ceci est mon texte pricnipal *ceci est de l'italique*. 
+
+<!-- bold in following list -->
+<!-- Should I inlude a picture with : ![caption](pathtoimage) --> 
+
+  1. **Du texte en gras**
+
+![](https://img.olympicchannel.com/images/image/private/t_16-9_1240-700_15x/f_auto/v1538355600/primary/kp759rkyorz2wc7xav8k){width=10%}
+
+In the picture above,you can see olympic medalist Sky Brown, a thirteen year old professional skateboarder casually chilling on her board, mid-air. 
+
+  
+  2.  **Autre texte en gras**:  (not to be confounded with Penny the clown from "IT") :
+  
+![](https://media.istockphoto.com/photos/jack-russell-terrier-dog-rides-a-penny-board-outdoors-picture-id1331764145?k=20&m=1331764145&s=612x612&w=0&h=OslPGlaZ9b7SyPUKSouUDyUMXQXOXy6A_G5GHB2hDro=){width=50%}
+
+# bullet list 
+
+- Item
+- Item 2
+  1. subitem 1 
+  2. subitem 2
+  3. subitem 3
+- Item 3 
+
+
+A) list
+B) List 
+C) list
+
+<!-- a picture --> 
+
+```{r echo=FALSE, out.width='10%'}
+knitr::include_graphics('./img/2_qr.JPG')
+``` 
+
+@ben-soussan_editorial_2021 have talked about <!-- include multiple references --> 
+
+
+The next gray bit shows how I loaded the library dplyr :
+
+```{r}
+library(dplyr) #explain what it's for?
+```
+
+In this r code chunk section, we see how I loaded the sleep dataset : 
+```{r}
+data()
+data("sleep")   # i am loading the 'sleep' built-in dataset from R Studio
+summary(sleep)  # with summary() we see basic information 
+```
+
+
+#References 
+
+
+

@@ -1,0 +1,27 @@
+---
+title: "week8_DP"
+author: "Cátia Reis"
+date: "13/04/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+<!-- Here a guideline for your report:
+
+Find a dataset that you are interested in
+Upload the .csv and check you data
+Which is it your Explanatory and Response variable?
+There is a correlation between the two?
+This correlation implies causation?
+Now fit your model in a (General) Linear Model (remember the assumptions)
+Which model describes better your data? Explain
+Remember to apply the general suggestion to your report:
+
+add an appropriate header (e.g., title, author, date, output format)
+add some headers and sub-headers
+Add labels to the axes’ plot and add a title for each plot!
+Have fun and try to make the report interesting for the reader! --> 

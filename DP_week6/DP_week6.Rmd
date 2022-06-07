@@ -1,0 +1,18 @@
+---
+title: "DP_week6"
+author: "Cátia Reis"
+date: "06/04/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Data practical
+
+* Load some data (sets) and describe your data and its variables
+* Formulate two questions about the data that you want to visualize
+* [Decide how to visualize your variables](https://www.data-to-viz.com)
+* Convert your data types if needed, e.g., [to factors](https://swcarpentry.github.io/r-novice-inflammation/12-supp-factors/index.html)
+* Create your plots and explain in prose what the data visualizes (see example above)
