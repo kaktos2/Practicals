@@ -176,34 +176,119 @@ pre code {
 </div>
 
 
-<div id="data-practical" class="section level1">
-<h1>Data practical</h1>
-<p>For this week’s data practical, we will load some data and wrangle it a bit. I encourage you to do the following tasks on a data set of your choice – ideally something you can use for your own research or something that interests you! There are lots of data sets out there, e.g.:</p>
-<ul>
-<li><a href="https://www.rdocumentation.org/packages/dslabs/versions/0.7.4" class="uri">https://www.rdocumentation.org/packages/dslabs/versions/0.7.4</a></li>
-<li><a href="https://pudding.cool" class="uri">https://pudding.cool</a></li>
-</ul>
-<p>The learning objectives are to implement the following tasks on data sets, e.g., show that you can select, filter, and arrange data in various ways to turn it into more useful information for analysis.</p>
-<p>If you prefer, you can use the suggested data sets below. Please complete the tasks within an R Markdown report and push the report to your GitHub repository:</p>
-<ul>
-<li>Load a data set of your choosing – or use the <code>gapminder</code> data set from the dslabs R library as discussed in this report</li>
-<li>Filter the data by two variables – e.g., countries of your choice – and save the results to a new data frame</li>
-<li>Now select a subset of the columns (e.g., country, year, fertility) and save them to the data frame</li>
-<li>Display the first few rows of the data frame</li>
-<li>Display the law few rows of the data frame</li>
-<li>Display the structure of the data frame</li>
-<li>Display the data ordered (arranged) by columns, e.g., the country, highest-to-lowest fertility, then year</li>
-<li>Describe any patterns or lack of patterns that you see in the data (note: you can also rearrange the data in other ways if that helps, but look at it and write up in a sentence or two your findings)</li>
-<li>Summarize you results – e.g., select the country and fertility rate and group by country and summarize the fertility rate – and save the results to a new data frame</li>
-<li>Display the results arranged by a column of interest, e.g., lowest-to-highest fertility rates – write something about what you observe</li>
-<li>Filter out the <code>NA</code>s in your data set and report how many rows are affected (i.e., removed)</li>
-<li>Load two data sets and join them, e.g., the dslabs library has two data sets:
-<ul>
-<li><a href="https://www.rdocumentation.org/packages/dslabs/versions/0.7.4/topics/polls_us_election_2016">results_us_election_2016</a></li>
-<li><a href="https://www.rdocumentation.org/packages/dslabs/versions/0.7.4/topics/murders">murders</a></li>
-</ul></li>
-<li>Describe in words how you could explore the relationship between two variables in your combined data sets and what it can potentially tell us</li>
-</ul>
+<div id="data-practical-4" class="section level1">
+<h1>Data practical 4</h1>
+<!--For this week's data practical, we will load some data and wrangle it a bit. I encourage you to do the following tasks on a data set of your choice -- ideally something you can use for your own research or something that interests you! There are lots of data sets out there, e.g.:
+
+<!-- * Load a data set of your choosing -- or use the `gapminder` data set from the dslabs R library as discussed in this report -->
+<pre class="r"><code>library(readr)</code></pre>
+<pre><code>## Warning: package &#39;readr&#39; was built under R version 4.1.2</code></pre>
+<pre class="r"><code>library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>skate_sounds &lt;- read.csv(&quot;https://raw.githubusercontent.com/the-pudding/data/master/skate-music/soundtrack_data.csv&quot;)
+str(skate_sounds)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    568 obs. of  7 variables:
+##  $ artist    : chr  &quot;The Beatles&quot; &quot;Fugazi&quot; &quot;The Rolling Stones&quot; &quot;David Bowie&quot; ...
+##  $ tote      : int  46 43 40 39 36 35 33 30 29 28 ...
+##  $ group     : chr  &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; ...
+##  $ genre_fake: chr  &quot;rap&quot; &quot;rap&quot; &quot;rap&quot; &quot;rap&quot; ...
+##  $ year      : int  2008 2008 2008 2008 2008 2008 2008 2008 2008 2008 ...
+##  $ genre     : chr  &quot;Classic Rock&quot; &quot;Punk&quot; &quot;Classic Rock&quot; &quot;Classic Rock&quot; ...
+##  $ id        : int  1 2 3 4 5 6 7 8 9 10 ...</code></pre>
+<!-- * Filter the data by two variables -- e.g., countries of your choice -- and save the results to a new data frame -->
+<p>I am filtering the data set to have an overview of electronic music used in skate videos.</p>
+<pre class="r"><code>library(dplyr)
+skate_new&lt;-skate_sounds %&gt;% filter(genre==&quot;Electronic&quot;) %&gt;% select(artist,tote,genre)</code></pre>
+<p>In the following code, the first rows are displayed.</p>
+<pre class="r"><code>head(skate_new)</code></pre>
+<pre><code>##             artist tote      genre
+## 1              Sol   35 Electronic
+## 2       Odd Nosdam   26 Electronic
+## 3            Baron   20 Electronic
+## 4              M83   14 Electronic
+## 5            Enoch   13 Electronic
+## 6 Adeodat Warfield   11 Electronic</code></pre>
+<p>Now, we can find the last rows.</p>
+<pre class="r"><code>tail(skate_new)</code></pre>
+<pre><code>##            artist tote      genre
+## 49 Propellerheads    4 Electronic
+## 50        Ratatat    4 Electronic
+## 51         Sixtoo    4 Electronic
+## 52      The Knife    4 Electronic
+## 53       Vangelis    4 Electronic
+## 54    Vito Y Coco    4 Electronic</code></pre>
+<p>Here, you can see the structure of the dataset.</p>
+<pre class="r"><code>str(skate_new)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    54 obs. of  3 variables:
+##  $ artist: chr  &quot;Sol&quot; &quot;Odd Nosdam&quot; &quot;Baron&quot; &quot;M83&quot; ...
+##  $ tote  : int  35 26 20 14 13 11 11 10 10 9 ...
+##  $ genre : chr  &quot;Electronic&quot; &quot;Electronic&quot; &quot;Electronic&quot; &quot;Electronic&quot; ...</code></pre>
+<pre class="r"><code>skate&lt;-skate_new %&gt;% arrange(tote,artist,genre)
+skate</code></pre>
+<pre><code>##                      artist tote      genre
+## 1             Andy Caldwell    4 Electronic
+## 2  Black Moth Super Rainbow    4 Electronic
+## 3           Broken Spindles    4 Electronic
+## 4                 Daft Punk    4 Electronic
+## 5                 DJ Kechup    4 Electronic
+## 6               DJ Sureshot    4 Electronic
+## 7         Eighty Mile Beach    4 Electronic
+## 8               Electrelane    4 Electronic
+## 9            Fischerspooner    4 Electronic
+## 10               Prefuse 73    4 Electronic
+## 11                  Prodigy    4 Electronic
+## 12           Propellerheads    4 Electronic
+## 13                  Ratatat    4 Electronic
+## 14                   Sixtoo    4 Electronic
+## 15                The Knife    4 Electronic
+## 16                 Vangelis    4 Electronic
+## 17              Vito Y Coco    4 Electronic
+## 18                      Aim    5 Electronic
+## 19                    Bjork    5 Electronic
+## 20                 Calexico    5 Electronic
+## 21        Chemical Brothers    5 Electronic
+## 22             David Holmes    5 Electronic
+## 23         Devendra Banhart    5 Electronic
+## 24                 DJ Frane    5 Electronic
+## 25                Dutch Dub    5 Electronic
+## 26              Fatboy Slim    5 Electronic
+## 27                  Justice    5 Electronic
+## 28                 Le Tigre    5 Electronic
+## 29   Sly &amp; The Family Stone    5 Electronic
+## 30    The Chemical Brothers    5 Electronic
+## 31            William Orbit    5 Electronic
+## 32              ((sounder))    6 Electronic
+## 33                   Busy P    6 Electronic
+## 34                      Jel    6 Electronic
+## 35                 Ladytron    6 Electronic
+## 36                   Nobody    6 Electronic
+## 37                      Air    7 Electronic
+## 38                     Shed    7 Electronic
+## 39           Death In Vegas    8 Electronic
+## 40                 DJ Egadz    8 Electronic
+## 41                  DJ Mutt    8 Electronic
+## 42               Jamiroquai    8 Electronic
+## 43          Crystal Castles    9 Electronic
+## 44                     Moby    9 Electronic
+## 45             Squarepusher    9 Electronic
+## 46                  Mophono   10 Electronic
+## 47                    Unkle   10 Electronic
+## 48         Adeodat Warfield   11 Electronic
+## 49                John Maus   11 Electronic
+## 50                    Enoch   13 Electronic
+## 51                      M83   14 Electronic
+## 52                    Baron   20 Electronic
+## 53               Odd Nosdam   26 Electronic
+## 54                      Sol   35 Electronic</code></pre>
+<p>Let’s filter the na’s</p>
+<pre class="r"><code>filtered_na&lt;-skate_new %&gt;% filter(!is.na(tote))</code></pre>
 </div>
 
 

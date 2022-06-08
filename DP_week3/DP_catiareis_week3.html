@@ -178,16 +178,12 @@ pre code {
 
 <div id="practical-3---data" class="section level1">
 <h1>PRACTICAL 3 - DATA</h1>
-<div id="built-in-r-dataset" class="section level2">
-<h2>Built-in R dataset</h2>
-<p>In the following code-chunk, I load the built-in R dataset called “Titanic” in which we find information about passengers who have survived the Titanic :</p>
-<pre class="r"><code>data(&quot;Titanic&quot;)
-summary(Titanic)</code></pre>
-<pre><code>## Number of cases in table: 2201 
-## Number of factors: 4 
-## Test for independence of all factors:
-##  Chisq = 1637.4, df = 25, p-value = 0
-##  Chi-squared approximation may be incorrect</code></pre>
+<pre class="r"><code>library(dslabs)</code></pre>
+<pre><code>## Warning: package &#39;dslabs&#39; was built under R version 4.1.3</code></pre>
+<div id="dataset-numero-1---built-in-r-dataset" class="section level2">
+<h2>Dataset numero 1 - Built-in R dataset</h2>
+<p>In the following code-chunk, I load the built-in R dataset called “Titanic” in which we find basic information about passengers who have survived the Titanic :</p>
+<pre class="r"><code>data(Titanic)</code></pre>
 <pre class="r"><code>str(Titanic)</code></pre>
 <pre><code>##  &#39;table&#39; num [1:4, 1:2, 1:2, 1:2] 0 0 35 0 0 0 17 0 118 154 ...
 ##  - attr(*, &quot;dimnames&quot;)=List of 4
@@ -195,8 +191,7 @@ summary(Titanic)</code></pre>
 ##   ..$ Sex     : chr [1:2] &quot;Male&quot; &quot;Female&quot;
 ##   ..$ Age     : chr [1:2] &quot;Child&quot; &quot;Adult&quot;
 ##   ..$ Survived: chr [1:2] &quot;No&quot; &quot;Yes&quot;</code></pre>
-<p>In the R output (see above), we see that there are four variables which are all character There are four variables in this data set :</p>
-<p><strong>R data types.</strong> There are four CHARACTER variables in this data set :</p>
+<p>In the R output (see above), we see that there are four CHARACTER variables in this data set :</p>
 <ol style="list-style-type: decimal">
 <li>Class: 1st, 2nd, 3rd, crew</li>
 <li>Sex: Male, Female</li>
@@ -205,9 +200,9 @@ summary(Titanic)</code></pre>
 </ol>
 <p><strong>Statistical data types.</strong> These four variables are called NOMINAL QUALITATIVE variables. I hesitated to say that the “class” variable was <em>ordinal</em> because of the sequence “1st, 2nd, 3rd” but “crew” didn’t quite fit in this.</p>
 </div>
-<div id="external-dataset" class="section level2">
-<h2>External dataset</h2>
-<p>Here, I load the dataset called “skate_soundtrack_data” which includes data on the <strong>skate soundtracks</strong>.</p>
+<div id="data-set-numero-2---external-dataset" class="section level2">
+<h2>Data set numero 2 - External dataset</h2>
+<p>Here, I load the dataset called “skate_soundtrack_data” done by <span class="citation">(<strong>misc?</strong>)</span> which includes data on <strong>skate soundtracks</strong> used in skateboarding videos.</p>
 <pre class="r"><code>library(readr)</code></pre>
 <pre><code>## Warning: package &#39;readr&#39; was built under R version 4.1.2</code></pre>
 <pre class="r"><code>data_skate &lt;- read.csv(&quot;https://raw.githubusercontent.com/the-pudding/data/master/skate-music/soundtrack_data.csv&quot;)
@@ -228,7 +223,7 @@ str(data_skate)</code></pre>
 ## 4        David Bowie   39  high        rap 2008 Classic Rock  4
 ## 5      Black Sabbath   36  high        rap 2008        Metal  5
 ## 6                Sol   35  high        rap 2008   Electronic  6</code></pre>
-<p>There are seven variables but the author of the data set says that the “genre_fake” column should be ignored as they used it for “testing purposes”.</p>
+<p>There are seven variables but the author of the data set says that the “genre_fake” column should be ignored as they used it for “testing purposes.” <!-- cite source --></p>
 <p>There are three INTEGER variables (R data type is given first, statistical type is given after the colon in the bullet list :</p>
 <ul>
 <li>tote : quantitative discrete</li>
@@ -242,36 +237,42 @@ str(data_skate)</code></pre>
 <li>genre_fake : qualitative nominal</li>
 <li>genre : qualitative nominal</li>
 </ul>
-<pre class="r"><code>library(dplyr)</code></pre>
-<pre><code>## 
-## Attaching package: &#39;dplyr&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     intersect, setdiff, setequal, union</code></pre>
-<pre class="r"><code>new_skate&lt;-data_skate %&gt;%
-select(artist, year,tote)</code></pre>
-<p>In the above code chunk, we see that the Beatles are the most played band</p>
-<pre class="r"><code>new_skate %&gt;%
-arrange(desc(tote)) %&gt;%
-filter(year == &quot;2008&quot;)</code></pre>
-<pre><code>##                artist year tote
-## 1         The Beatles 2008   46
-## 2              Fugazi 2008   43
-## 3  The Rolling Stones 2008   40
-## 4         David Bowie 2008   39
-## 5       Black Sabbath 2008   36
-## 6                 Sol 2008   35
-## 7        Jimi Hendrix 2008   33
-## 8                Devo 2008   30
-## 9                 CKY 2008   29
-## 10         Gang Starr 2008   28
-## 11     The Black Keys 2008   28
-## 12          The Doors 2008   28
-## 13         Odd Nosdam 2008   26
-## 14         Pink Floyd 2008   26</code></pre>
+</div>
+<div id="dataset-numero-3---dataset-from-dslabs-package" class="section level2">
+<h2>Dataset numero 3 - Dataset from dslabs package</h2>
+<p>Same old, same old, looking at the type of variables we find in the ‘movielens’ dataset.</p>
+<pre class="r"><code>str(movielens)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    100004 obs. of  7 variables:
+##  $ movieId  : int  31 1029 1061 1129 1172 1263 1287 1293 1339 1343 ...
+##  $ title    : chr  &quot;Dangerous Minds&quot; &quot;Dumbo&quot; &quot;Sleepers&quot; &quot;Escape from New York&quot; ...
+##  $ year     : int  1995 1941 1996 1981 1989 1978 1959 1982 1992 1991 ...
+##  $ genres   : Factor w/ 901 levels &quot;(no genres listed)&quot;,..: 762 510 899 120 762 836 81 762 844 899 ...
+##  $ userId   : int  1 1 1 1 1 1 1 1 1 1 ...
+##  $ rating   : num  2.5 3 3 2 4 2 2 2 3.5 2 ...
+##  $ timestamp: int  1260759144 1260759179 1260759182 1260759185 1260759205 1260759151 1260759187 1260759148 1260759125 1260759131 ...</code></pre>
+<p>Out of 7 variables (and I say this with the voice of a loto presenter) we have…: <!-- change?--></p>
+<ul>
+<li>Four integers : movieId, year, userId, timestamp</li>
+<li>One character variable: title</li>
+<li>One factor : genres</li>
+<li>One numerical : rating.</li>
+</ul>
+<p>The most important variables for this dataset are probably “title” and “rating” which are respectively a “qualitative” and “quantitative ordinal” variable.</p>
+<pre class="r"><code>head(movielens)</code></pre>
+<pre><code>##   movieId                                   title year
+## 1      31                         Dangerous Minds 1995
+## 2    1029                                   Dumbo 1941
+## 3    1061                                Sleepers 1996
+## 4    1129                    Escape from New York 1981
+## 5    1172 Cinema Paradiso (Nuovo cinema Paradiso) 1989
+## 6    1263                        Deer Hunter, The 1978
+##                             genres userId rating  timestamp
+## 1                            Drama      1    2.5 1260759144
+## 2 Animation|Children|Drama|Musical      1    3.0 1260759179
+## 3                         Thriller      1    3.0 1260759182
+## 4 Action|Adventure|Sci-Fi|Thriller      1    2.0 1260759185
+## 5                            Drama      1    4.0 1260759205
+## 6                        Drama|War      1    2.0 1260759151</code></pre>
 </div>
 </div>
 
