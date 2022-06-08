@@ -13,37 +13,68 @@ knitr::opts_chunk$set(echo = TRUE)
 
 <!--For this week's data practical, we will load some data and wrangle it a bit. I encourage you to do the following tasks on a data set of your choice -- ideally something you can use for your own research or something that interests you! There are lots of data sets out there, e.g.:
 
-
-The learning objectives are to implement the following tasks on data sets, e.g., show that you can select, filter, and arrange data in various ways to turn it into more useful information for analysis.
-
-If you prefer, you can use the suggested data sets below. Please complete the tasks within an R Markdown report and push the report to your GitHub repository:-->
-
 <!-- * Load a data set of your choosing -- or use the `gapminder` data set from the dslabs R library as discussed in this report -->
 
 ```{r}
 library(readr)
+library(dplyr)
 skate_sounds <- read.csv("https://raw.githubusercontent.com/the-pudding/data/master/skate-music/soundtrack_data.csv")
+str(skate_sounds)
 ```
 <!-- * Filter the data by two variables -- e.g., countries of your choice -- and save the results to a new data frame -->
 
+I am filtering the data set to have an overview of electronic music used in skate videos. 
+
 ```{r}
 library(dplyr)
-filter_by_beatles<-skate_sounds %>% 
-filter(artist=="The Beatles")
+skate_new<-skate_sounds %>% filter(genre=="Electronic") %>% select(artist,tote,genre)
+```
+
+In the following code, the first rows are displayed. 
+```{r}
+head(skate_new)
+```
+
+
+Now, we can find the last rows. 
+```{r}
+tail(skate_new)
+```
+
+Here, you can see the structure of the dataset. 
+```{r}
+str(skate_new)
+```
+
+```{r}
+skate<-skate_new %>% arrange(tote,artist,genre)
+skate
+```
+
+
+Let's filter the na's
+
+```{r}
+filtered_na<-skate_new %>% filter(!is.na(tote))
 
 ```
 
 
-* Now select a subset of the columns (e.g., country, year, fertility) and save them to the data frame
-* Display the first few rows of the data frame
-* Display the law few rows of the data frame
-* Display the structure of the data frame
-* Display the data ordered (arranged) by columns, e.g., the country, highest-to-lowest fertility, then year
-* Describe any patterns or lack of patterns that you see in the data (note: you can also rearrange the data in other ways if that helps, but look at it and write up in a sentence or two your findings)
-* Summarize you results -- e.g., select the country and fertility rate and group by country and summarize the fertility rate -- and save the results to a new data frame
-* Display the results arranged by a column of interest, e.g., lowest-to-highest fertility rates -- write something about what you observe
-* Filter out the `NA`s in your data set and report how many rows are affected (i.e., removed)
-* Load two data sets and join them, e.g., the dslabs library has two data sets:
-    * [results_us_election_2016](https://www.rdocumentation.org/packages/dslabs/versions/0.7.4/topics/polls_us_election_2016)
-    * [murders](https://www.rdocumentation.org/packages/dslabs/versions/0.7.4/topics/murders)
-* Describe in words how you could explore the relationship between two variables in your combined data sets and what it can potentially tell us -->
+We are going to join the following two datasets.
+
+```{r}
+
+library(datasets)
+library(dslabs)
+
+
+```
+```{r}
+
+data(murders)
+data(results_us_election_2016)
+```
+
+
+
+
