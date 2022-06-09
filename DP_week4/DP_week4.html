@@ -176,119 +176,76 @@ pre code {
 </div>
 
 
-<div id="data-practical-4" class="section level1">
-<h1>Data practical 4</h1>
-<!--For this week's data practical, we will load some data and wrangle it a bit. I encourage you to do the following tasks on a data set of your choice -- ideally something you can use for your own research or something that interests you! There are lots of data sets out there, e.g.:
-
-<!-- * Load a data set of your choosing -- or use the `gapminder` data set from the dslabs R library as discussed in this report -->
-<pre class="r"><code>library(readr)</code></pre>
-<pre><code>## Warning: package &#39;readr&#39; was built under R version 4.1.2</code></pre>
-<pre class="r"><code>library(dplyr)</code></pre>
-<pre><code>## 
-## Attaching package: &#39;dplyr&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     intersect, setdiff, setequal, union</code></pre>
-<pre class="r"><code>skate_sounds &lt;- read.csv(&quot;https://raw.githubusercontent.com/the-pudding/data/master/skate-music/soundtrack_data.csv&quot;)
-str(skate_sounds)</code></pre>
-<pre><code>## &#39;data.frame&#39;:    568 obs. of  7 variables:
-##  $ artist    : chr  &quot;The Beatles&quot; &quot;Fugazi&quot; &quot;The Rolling Stones&quot; &quot;David Bowie&quot; ...
-##  $ tote      : int  46 43 40 39 36 35 33 30 29 28 ...
-##  $ group     : chr  &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; ...
-##  $ genre_fake: chr  &quot;rap&quot; &quot;rap&quot; &quot;rap&quot; &quot;rap&quot; ...
-##  $ year      : int  2008 2008 2008 2008 2008 2008 2008 2008 2008 2008 ...
-##  $ genre     : chr  &quot;Classic Rock&quot; &quot;Punk&quot; &quot;Classic Rock&quot; &quot;Classic Rock&quot; ...
-##  $ id        : int  1 2 3 4 5 6 7 8 9 10 ...</code></pre>
+<div id="data-practical-4" class="section level2">
+<h2>Data practical 4</h2>
+<pre class="r"><code>library(readr)
+library(dplyr)
+library(datasets)
+library(dslabs)</code></pre>
 <!-- * Filter the data by two variables -- e.g., countries of your choice -- and save the results to a new data frame -->
-<p>I am filtering the data set to have an overview of electronic music used in skate videos.</p>
-<pre class="r"><code>library(dplyr)
-skate_new&lt;-skate_sounds %&gt;% filter(genre==&quot;Electronic&quot;) %&gt;% select(artist,tote,genre)</code></pre>
+<pre class="r"><code>skate &lt;- read.csv(&quot;https://raw.githubusercontent.com/the-pudding/data/master/skate-music/soundtrack_data.csv&quot;)</code></pre>
+<p>Now, let’s filter the skate dataset to look at “Electronic” music with a total of uses in the videos that is equal or superior to 20.</p>
+<pre class="r"><code>skate_filter&lt;-skate %&gt;% filter(genre==&quot;Electronic&quot;,tote&gt;=10)
+skate_filter</code></pre>
+<pre><code>##             artist tote  group genre_fake year      genre  id
+## 1              Sol   35   high        rap 2008 Electronic   6
+## 2       Odd Nosdam   26   high        rap 2008 Electronic  13
+## 3            Baron   20 medium       rock 2009 Electronic  24
+## 4              M83   14 medium       rock 2009 Electronic  48
+## 5            Enoch   13 medium       rock 2009 Electronic  55
+## 6 Adeodat Warfield   11 medium       rock 2009 Electronic  78
+## 7        John Maus   11 medium       rock 2009 Electronic  86
+## 8          Mophono   10 medium       rock 2009 Electronic 102
+## 9            Unkle   10 medium       rock 2009 Electronic 108</code></pre>
+<p>I am happy to announce that M83 is in fourth place of the most used electronic music in skate videos.</p>
+<p>Since there are a couple of columns we do not really care about, let’s select those that matter.</p>
+<pre class="r"><code>skate_selected &lt;- skate_filter %&gt;% select(artist,tote,genre,year)</code></pre>
 <p>In the following code, the first rows are displayed.</p>
-<pre class="r"><code>head(skate_new)</code></pre>
-<pre><code>##             artist tote      genre
-## 1              Sol   35 Electronic
-## 2       Odd Nosdam   26 Electronic
-## 3            Baron   20 Electronic
-## 4              M83   14 Electronic
-## 5            Enoch   13 Electronic
-## 6 Adeodat Warfield   11 Electronic</code></pre>
+<pre class="r"><code>head(skate_selected)</code></pre>
+<pre><code>##             artist tote      genre year
+## 1              Sol   35 Electronic 2008
+## 2       Odd Nosdam   26 Electronic 2008
+## 3            Baron   20 Electronic 2009
+## 4              M83   14 Electronic 2009
+## 5            Enoch   13 Electronic 2009
+## 6 Adeodat Warfield   11 Electronic 2009</code></pre>
 <p>Now, we can find the last rows.</p>
-<pre class="r"><code>tail(skate_new)</code></pre>
-<pre><code>##            artist tote      genre
-## 49 Propellerheads    4 Electronic
-## 50        Ratatat    4 Electronic
-## 51         Sixtoo    4 Electronic
-## 52      The Knife    4 Electronic
-## 53       Vangelis    4 Electronic
-## 54    Vito Y Coco    4 Electronic</code></pre>
+<pre class="r"><code>tail(skate_selected)</code></pre>
+<pre><code>##             artist tote      genre year
+## 4              M83   14 Electronic 2009
+## 5            Enoch   13 Electronic 2009
+## 6 Adeodat Warfield   11 Electronic 2009
+## 7        John Maus   11 Electronic 2009
+## 8          Mophono   10 Electronic 2009
+## 9            Unkle   10 Electronic 2009</code></pre>
 <p>Here, you can see the structure of the dataset.</p>
-<pre class="r"><code>str(skate_new)</code></pre>
-<pre><code>## &#39;data.frame&#39;:    54 obs. of  3 variables:
+<pre class="r"><code>str(skate_selected)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    9 obs. of  4 variables:
 ##  $ artist: chr  &quot;Sol&quot; &quot;Odd Nosdam&quot; &quot;Baron&quot; &quot;M83&quot; ...
-##  $ tote  : int  35 26 20 14 13 11 11 10 10 9 ...
-##  $ genre : chr  &quot;Electronic&quot; &quot;Electronic&quot; &quot;Electronic&quot; &quot;Electronic&quot; ...</code></pre>
-<pre class="r"><code>skate&lt;-skate_new %&gt;% arrange(tote,artist,genre)
-skate</code></pre>
-<pre><code>##                      artist tote      genre
-## 1             Andy Caldwell    4 Electronic
-## 2  Black Moth Super Rainbow    4 Electronic
-## 3           Broken Spindles    4 Electronic
-## 4                 Daft Punk    4 Electronic
-## 5                 DJ Kechup    4 Electronic
-## 6               DJ Sureshot    4 Electronic
-## 7         Eighty Mile Beach    4 Electronic
-## 8               Electrelane    4 Electronic
-## 9            Fischerspooner    4 Electronic
-## 10               Prefuse 73    4 Electronic
-## 11                  Prodigy    4 Electronic
-## 12           Propellerheads    4 Electronic
-## 13                  Ratatat    4 Electronic
-## 14                   Sixtoo    4 Electronic
-## 15                The Knife    4 Electronic
-## 16                 Vangelis    4 Electronic
-## 17              Vito Y Coco    4 Electronic
-## 18                      Aim    5 Electronic
-## 19                    Bjork    5 Electronic
-## 20                 Calexico    5 Electronic
-## 21        Chemical Brothers    5 Electronic
-## 22             David Holmes    5 Electronic
-## 23         Devendra Banhart    5 Electronic
-## 24                 DJ Frane    5 Electronic
-## 25                Dutch Dub    5 Electronic
-## 26              Fatboy Slim    5 Electronic
-## 27                  Justice    5 Electronic
-## 28                 Le Tigre    5 Electronic
-## 29   Sly &amp; The Family Stone    5 Electronic
-## 30    The Chemical Brothers    5 Electronic
-## 31            William Orbit    5 Electronic
-## 32              ((sounder))    6 Electronic
-## 33                   Busy P    6 Electronic
-## 34                      Jel    6 Electronic
-## 35                 Ladytron    6 Electronic
-## 36                   Nobody    6 Electronic
-## 37                      Air    7 Electronic
-## 38                     Shed    7 Electronic
-## 39           Death In Vegas    8 Electronic
-## 40                 DJ Egadz    8 Electronic
-## 41                  DJ Mutt    8 Electronic
-## 42               Jamiroquai    8 Electronic
-## 43          Crystal Castles    9 Electronic
-## 44                     Moby    9 Electronic
-## 45             Squarepusher    9 Electronic
-## 46                  Mophono   10 Electronic
-## 47                    Unkle   10 Electronic
-## 48         Adeodat Warfield   11 Electronic
-## 49                John Maus   11 Electronic
-## 50                    Enoch   13 Electronic
-## 51                      M83   14 Electronic
-## 52                    Baron   20 Electronic
-## 53               Odd Nosdam   26 Electronic
-## 54                      Sol   35 Electronic</code></pre>
-<p>Let’s filter the na’s</p>
-<pre class="r"><code>filtered_na&lt;-skate_new %&gt;% filter(!is.na(tote))</code></pre>
+##  $ tote  : int  35 26 20 14 13 11 11 10 10
+##  $ genre : chr  &quot;Electronic&quot; &quot;Electronic&quot; &quot;Electronic&quot; &quot;Electronic&quot; ...
+##  $ year  : int  2008 2008 2009 2009 2009 2009 2009 2009 2009</code></pre>
+<p>Now, let’s arrange our data. It will show the rows ordered by “tote” from the lowest to the highest value.</p>
+<pre class="r"><code>skate_arranged&lt;-skate_selected %&gt;% arrange(desc(tote,genre))
+skate_arranged</code></pre>
+<pre><code>##             artist tote      genre year
+## 1              Sol   35 Electronic 2008
+## 2       Odd Nosdam   26 Electronic 2008
+## 3            Baron   20 Electronic 2009
+## 4              M83   14 Electronic 2009
+## 5            Enoch   13 Electronic 2009
+## 6 Adeodat Warfield   11 Electronic 2009
+## 7        John Maus   11 Electronic 2009
+## 8          Mophono   10 Electronic 2009
+## 9            Unkle   10 Electronic 2009</code></pre>
+<p>We can see that the most popular electronic artist is Sol.</p>
+<!--Describe any patterns or lack of patterns that you see in the data (note: you can also rearrange the data in other ways if that helps, but look at it and write up in a sentence or two your findings)-->
+<p>In the following code chunk, I decided to take the initial dataset to see the total of times each genre was used in skate videos.</p>
+<pre class="r"><code>total&lt;-skate %&gt;% group_by(genre) %&gt;% summarize(total_use_of_genre=sum(tote)) %&gt;% arrange(desc(total_use_of_genre))</code></pre>
+<p>We are going to join the following two datasets.</p>
+<pre class="r"><code>data(murders)
+data(polls_us_election_2016)</code></pre>
+<pre class="r"><code>data(Orange)</code></pre>
 </div>
 
 

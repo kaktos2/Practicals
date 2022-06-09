@@ -9,71 +9,76 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Data practical 4
+## Data practical 4
 
-<!--For this week's data practical, we will load some data and wrangle it a bit. I encourage you to do the following tasks on a data set of your choice -- ideally something you can use for your own research or something that interests you! There are lots of data sets out there, e.g.:
-
-<!-- * Load a data set of your choosing -- or use the `gapminder` data set from the dslabs R library as discussed in this report -->
-
-```{r}
+```{r , message=F, warning=F}
 library(readr)
 library(dplyr)
-skate_sounds <- read.csv("https://raw.githubusercontent.com/the-pudding/data/master/skate-music/soundtrack_data.csv")
-str(skate_sounds)
+library(datasets)
+library(dslabs)
 ```
-<!-- * Filter the data by two variables -- e.g., countries of your choice -- and save the results to a new data frame -->
 
-I am filtering the data set to have an overview of electronic music used in skate videos. 
+<!-- * Filter the data by two variables -- e.g., countries of your choice -- and save the results to a new data frame -->
+```{r}
+skate <- read.csv("https://raw.githubusercontent.com/the-pudding/data/master/skate-music/soundtrack_data.csv")
+```
+
+Now, let's filter the skate dataset to look at "Electronic" music with a total of uses in the videos that is equal or superior to 20.
+```{r}
+skate_filter<-skate %>% filter(genre=="Electronic",tote>=10)
+skate_filter
+```
+
+I am happy to announce that M83 is in fourth place of the most used electronic music in skate videos.  
+
+
+
+Since there are a couple of columns we do not really care about, let's select those that matter. 
 
 ```{r}
-library(dplyr)
-skate_new<-skate_sounds %>% filter(genre=="Electronic") %>% select(artist,tote,genre)
+skate_selected <- skate_filter %>% select(artist,tote,genre,year)
 ```
 
 In the following code, the first rows are displayed. 
 ```{r}
-head(skate_new)
+head(skate_selected)
 ```
 
 
 Now, we can find the last rows. 
 ```{r}
-tail(skate_new)
+tail(skate_selected)
 ```
 
 Here, you can see the structure of the dataset. 
 ```{r}
-str(skate_new)
+str(skate_selected)
 ```
+
+Now, let's arrange our data. It will show the rows ordered by "tote" from the lowest to the highest value.
 
 ```{r}
-skate<-skate_new %>% arrange(tote,artist,genre)
-skate
+skate_arranged<-skate_selected %>% arrange(desc(tote,genre))
+skate_arranged
 ```
 
+We can see that the most popular electronic artist is Sol. 
 
-Let's filter the na's
+<!--Describe any patterns or lack of patterns that you see in the data (note: you can also rearrange the data in other ways if that helps, but look at it and write up in a sentence or two your findings)-->
 
+
+In the following code chunk, I decided to take the initial dataset to see the total of times each genre was used in skate videos. 
 ```{r}
-filtered_na<-skate_new %>% filter(!is.na(tote))
-
+total<-skate %>% group_by(genre) %>% summarize(total_use_of_genre=sum(tote)) %>% arrange(desc(total_use_of_genre))
 ```
-
 
 We are going to join the following two datasets.
 
 ```{r}
-
-library(datasets)
-library(dslabs)
-
-
-```
-```{r}
-
 data(murders)
-data(results_us_election_2016)
+data(polls_us_election_2016)
 ```
+
 
 
 

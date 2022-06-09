@@ -57,7 +57,7 @@ knitr::include_graphics('./img/2_qr.JPG')
 
 The next gray bit shows how I loaded the library dplyr :
 
-```{r}
+```{r, , message=F, warning=F}
 library(dplyr) #explain what it's for?
 ```
 
