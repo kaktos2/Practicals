@@ -16,6 +16,7 @@ library(readr)
 library(dplyr)
 library(datasets)
 library(dslabs)
+library(gapminder)
 ```
 
 <!-- * Filter the data by two variables -- e.g., countries of your choice -- and save the results to a new data frame -->
@@ -72,12 +73,24 @@ In the following code chunk, I decided to take the initial dataset to see the to
 total<-skate %>% group_by(genre) %>% summarize(total_use_of_genre=sum(tote)) %>% arrange(desc(total_use_of_genre))
 ```
 
+```{r}
+any(is.na(skate))
+```
+
+
+If there were NA values in my dataset and I would want to exclude them, I would use "filter(!is.na(name_of_colum_where_there_are_NA))". But as we have seen with the previous formula. 
+
+
+
 We are going to join the following two datasets.
 
+
 ```{r}
-data(murders)
-data(polls_us_election_2016)
+full_join(results_us_election_2016,murders)
 ```
+<!-- describe relationship -->
+
+
 
 
 
