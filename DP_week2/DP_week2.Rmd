@@ -32,7 +32,7 @@ Back in 2021, I did a semester in the English Master and we had to read Chimaman
 
 |Purple Hibiscus|Under The Udala Trees|
 |:-:|:-:|
-![Purple Hibiscus](https://static.fnac-static.com/multimedia/Images/FR/NR/80/11/44/4460928/1540-0/tsp20190111222358/Purple-Hibiscus.jpg)|![Under The Udala Trees](https://images-eu.ssl-images-amazon.com/images/I/81lkwx77O5L._AC_UL600_SR600,600_.jpg){width=60%}|
+![Purple Hibiscus](https://static.fnac-static.com/multimedia/Images/FR/NR/80/11/44/4460928/1540-0/tsp20190111222358/Purple-Hibiscus.jpg){width=50%}|![Under The Udala Trees](https://images-eu.ssl-images-amazon.com/images/I/81lkwx77O5L._AC_UL600_SR600,600_.jpg){width=50%}|
 
 @ramalingam_7_2021 helped me do this sort of table with the pictures of the books I am mentioning in this report. 
 
