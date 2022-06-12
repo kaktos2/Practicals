@@ -1,4 +1,4 @@
-3_DP_CatiaReis
+DP_week3
 ================
 Cátia Reis
 12/03/2022
@@ -6,14 +6,15 @@ Cátia Reis
 -   [Practical - Week 3](#practical---week-3)
     -   [Dataset 1 - Built-in R
         dataset](#dataset-1---built-in-r-dataset)
-    -   [Data set 2 - External dataset](#data-set-2---external-dataset)
-    -   [Dataset 3 - Dataset from dslabs
-        package](#dataset-3---dataset-from-dslabs-package)
+    -   [Dataset 2 - External dataset](#dataset-2---external-dataset)
+    -   [Dataset 3 - Dataset from
+        dslabs](#dataset-3---dataset-from-dslabs)
 -   [References](#references)
 
 ## Practical - Week 3
 
 ``` r
+library(readr)
 library(dslabs)
 ```
 
@@ -21,7 +22,7 @@ library(dslabs)
 
 In the following code-chunk, I load the built-in R dataset called
 “Titanic” in which we find basic information about passengers who have
-survived the Titanic :
+survived the Titanic…
 
 ``` r
 data(Titanic)
@@ -51,18 +52,12 @@ QUALITATIVE variables. I hesitated to say that the “class” variable was
 *ordinal* because of the sequence “1st, 2nd, 3rd” but “crew” didn’t
 quite fit in this.
 
-### Data set 2 - External dataset
+### Dataset 2 - External dataset
 
 Here, I load the dataset from The Pudding article by Wilber (2018) that
 has data on **skate soundtracks** used in skateboarding videos. You can
 find the dataset
 [here](https://github.com/the-pudding/data/blob/master/skate-music/soundtrack_data.csv).
-
-``` r
-library(readr)
-```
-
-    ## Warning: package 'readr' was built under R version 4.1.2
 
 ``` r
 data_skate <- read.csv("https://raw.githubusercontent.com/the-pudding/data/master/skate-music/soundtrack_data.csv")
@@ -108,10 +103,11 @@ The remaining variables are character variables :
 -   genre_fake : qualitative nominal
 -   genre : qualitative nominal
 
-### Dataset 3 - Dataset from dslabs package
+### Dataset 3 - Dataset from dslabs
 
 Same old, same old, looking at the type of variables we find in the
-‘movielens’ dataset.
+‘movielens’ dataset found in the dslabs package (Irizarry and Gill
+2021).
 
 ``` r
 str(movielens)
@@ -138,28 +134,23 @@ The most important variables for this dataset are probably “title” and
 “rating” which are respectively a “qualitative” and “quantitative
 ordinal” variable.
 
-``` r
-head(movielens)
-```
-
-    ##   movieId                                   title year
-    ## 1      31                         Dangerous Minds 1995
-    ## 2    1029                                   Dumbo 1941
-    ## 3    1061                                Sleepers 1996
-    ## 4    1129                    Escape from New York 1981
-    ## 5    1172 Cinema Paradiso (Nuovo cinema Paradiso) 1989
-    ## 6    1263                        Deer Hunter, The 1978
-    ##                             genres userId rating  timestamp
-    ## 1                            Drama      1    2.5 1260759144
-    ## 2 Animation|Children|Drama|Musical      1    3.0 1260759179
-    ## 3                         Thriller      1    3.0 1260759182
-    ## 4 Action|Adventure|Sci-Fi|Thriller      1    2.0 1260759185
-    ## 5                            Drama      1    4.0 1260759205
-    ## 6                        Drama|War      1    2.0 1260759151
-
 # References
 
 <div id="refs" class="references csl-bib-body hanging-indent">
+
+<div id="ref-irizarry_dslabs_2021" class="csl-entry">
+
+Irizarry, Rafael A., and Amy Gill. 2021. “Dslabs: Data Science Labs.”
+<https://CRAN.R-project.org/package=dslabs>.
+
+</div>
+
+<div id="ref-wickham_readr_2022" class="csl-entry">
+
+Wickham, Hadley, Jim Hester, and Jennifer Bryan. 2022. “Readr: Read
+Rectangular Text Data.” <https://CRAN.R-project.org/package=readr>.
+
+</div>
 
 <div id="ref-wilber_good_2018" class="csl-entry">
 

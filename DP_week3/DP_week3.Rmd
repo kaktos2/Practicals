@@ -1,5 +1,5 @@
 ---
-title: "3_DP_CatiaReis"
+title: "DP_week3"
 author: "Cátia Reis"
 date: "12/03/2022"
 output: 
@@ -15,17 +15,17 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Practical - Week 3
 
 ```{r, message= F , warning= F}
+library(readr)
 library(dslabs)
 ```
 
 ### Dataset 1 - Built-in R dataset
 
-In the following code-chunk, I load the built-in R dataset called "Titanic" in which we find basic information about passengers who have survived the Titanic :
+In the following code-chunk, I load the built-in R dataset called "Titanic" in which we find basic information about passengers who have survived the Titanic...
 
 ```{r}
 data(Titanic)
 ```
-
 ```{r}
 str(Titanic)
 ```
@@ -39,12 +39,13 @@ In the R output (see above), we see that there are four CHARACTER variables in t
 
 **Statistical data types.** These four variables are called NOMINAL QUALITATIVE variables. I hesitated to say that the "class" variable was *ordinal* because of the sequence "1st, 2nd, 3rd" but "crew" didn't quite fit in this. 
 
-### Data set 2 - External dataset 
 
-Here, I load the dataset from The Pudding article by @wilber_good_2018 that has data on **skate soundtracks** used in skateboarding videos. You can find the dataset [here](https://github.com/the-pudding/data/blob/master/skate-music/soundtrack_data.csv).  
+### Dataset 2 - External dataset 
+
+Here, I load the dataset from The Pudding article by @wilber_good_2018 that has data on **skate soundtracks** used in skateboarding videos. You can find the dataset [here](https://github.com/the-pudding/data/blob/master/skate-music/soundtrack_data.csv). 
+
 
 ```{r}
-library(readr)
 data_skate <- read.csv("https://raw.githubusercontent.com/the-pudding/data/master/skate-music/soundtrack_data.csv")
 str(data_skate)
 head(data_skate)
@@ -65,9 +66,9 @@ The remaining variables are character variables :
 - genre_fake : qualitative nominal
 - genre : qualitative nominal
 
-### Dataset 3 - Dataset from dslabs package
+### Dataset 3 - Dataset from dslabs
 
-Same old, same old, looking at the type of variables we find in the 'movielens' dataset. 
+Same old, same old, looking at the type of variables we find in the 'movielens' dataset found in the dslabs package [@irizarry_dslabs_2021]. 
 ```{r}
 str(movielens)
 ```
@@ -80,10 +81,11 @@ Out of 7 variables (and I say this with the voice of a loto presenter) we have..
 
 The most important variables for this dataset are probably "title" and "rating" which are respectively a "qualitative" and "quantitative ordinal" variable. 
 
-```{r}
-head(movielens)
-```
 
+---
+nocite: |
+  @wickham_readr_2022
+---
 
 
 # References
