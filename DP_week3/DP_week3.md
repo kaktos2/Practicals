@@ -9,6 +9,7 @@ Cátia Reis
     -   [Data set 2 - External dataset](#data-set-2---external-dataset)
     -   [Dataset 3 - Dataset from dslabs
         package](#dataset-3---dataset-from-dslabs-package)
+-   [References](#references)
 
 ## Practical - Week 3
 
@@ -52,9 +53,10 @@ quite fit in this.
 
 ### Data set 2 - External dataset
 
-Here, I load the dataset called “skate_soundtrack_data” done by
-(**misc?**) which includes data on **skate soundtracks** used in
-skateboarding videos.
+Here, I load the dataset from The Pudding article by Wilber (2018) that
+has data on **skate soundtracks** used in skateboarding videos. You can
+find the dataset
+[here](https://github.com/the-pudding/data/blob/master/skate-music/soundtrack_data.csv).
 
 ``` r
 library(readr)
@@ -154,3 +156,16 @@ head(movielens)
     ## 4 Action|Adventure|Sci-Fi|Thriller      1    2.0 1260759185
     ## 5                            Drama      1    4.0 1260759205
     ## 6                        Drama|War      1    2.0 1260759151
+
+# References
+
+<div id="refs" class="references csl-bib-body hanging-indent">
+
+<div id="ref-wilber_good_2018" class="csl-entry">
+
+Wilber, Jared. 2018. “The Good, the Rad, and the Gnarly.” *The Pudding*.
+<https://pudding.cool/2018/06/skate-music>.
+
+</div>
+
+</div>

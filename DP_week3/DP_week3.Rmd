@@ -5,7 +5,7 @@ date: "12/03/2022"
 output: 
   github_document:
     toc: true
-bibliography: referencesDP3.bib
+bibliography: ref_DP3.bib
 ---
 
 ```{r setup, include=FALSE}
@@ -41,7 +41,7 @@ In the R output (see above), we see that there are four CHARACTER variables in t
 
 ### Data set 2 - External dataset 
 
-Here, I load the dataset called "skate_soundtrack_data" done by @misc which includes data on **skate soundtracks** used in skateboarding videos. 
+Here, I load the dataset from The Pudding article by @wilber_good_2018 that has data on **skate soundtracks** used in skateboarding videos. You can find the dataset [here](https://github.com/the-pudding/data/blob/master/skate-music/soundtrack_data.csv).  
 
 ```{r}
 library(readr)
@@ -86,7 +86,7 @@ head(movielens)
 
 
 
-
+# References
 
 
 
