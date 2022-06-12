@@ -1,8 +1,11 @@
 ---
 title: "DP_Week4"
 author: "Cátia Reis"
-date: "06/04/2022"
-output: html_document
+date: "`r Sys.Date()`"
+output: 
+  github_document:
+      toc: true
+bibliography: ref_DP4.bib
 ---
 
 ```{r setup, include=FALSE}
@@ -14,12 +17,9 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r , message=F, warning=F}
 library(readr)
 library(dplyr)
-library(datasets)
 library(dslabs)
-library(gapminder)
 ```
 
-<!-- * Filter the data by two variables -- e.g., countries of your choice -- and save the results to a new data frame -->
 ```{r}
 skate <- read.csv("https://raw.githubusercontent.com/the-pudding/data/master/skate-music/soundtrack_data.csv")
 ```
@@ -71,27 +71,33 @@ We can see that the most popular electronic artist is Sol.
 In the following code chunk, I decided to take the initial dataset to see the total of times each genre was used in skate videos. 
 ```{r}
 total<-skate %>% group_by(genre) %>% summarize(total_use_of_genre=sum(tote)) %>% arrange(desc(total_use_of_genre))
+total
 ```
 
+Let's use a function to see if we have NA's in our data...
 ```{r}
 any(is.na(skate))
 ```
 
-
-If there were NA values in my dataset and I would want to exclude them, I would use "filter(!is.na(name_of_colum_where_there_are_NA))". But as we have seen with the previous formula. 
-
+If there were NA values in my dataset and I would want to exclude them, I would use "filter(!is.na(name_of_colum_where_there_are_NA))". But as we have seen with the previous formula there are none. 
 
 
-We are going to join the following two datasets.
+## MERGE! 
 
+This is all I could think of when I saw we were going to join two datasets : [a good old Friends reference](https://youtu.be/lP2pz7E7hm4?t=15). 
 
+Let's 'merge' the `results_us_election_2016` and `murders` datasets. 
 ```{r}
-full_join(results_us_election_2016,murders)
+head(full_join(results_us_election_2016,murders))
 ```
 <!-- describe relationship -->
 
+---
+nocite: |
+  @wilber_good_2018,  @irizarry_dslabs_2021,@wickham_readr_2022
+---
 
-
+# References
 
 
 
