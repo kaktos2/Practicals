@@ -46,9 +46,9 @@ silence in this novel. I discovered a silence that was both oppressive
 and quietening as well as an expressive silence that allowed characters
 to communicate with each other.
 
-|                                                             Purple Hibiscus                                                              |                                                                Under The Udala Trees                                                                |
-|:----------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------:|
-| ![Purple Hibiscus](https://static.fnac-static.com/multimedia/Images/FR/NR/80/11/44/4460928/1540-0/tsp20190111222358/Purple-Hibiscus.jpg) | <img src="https://images-eu.ssl-images-amazon.com/images/I/81lkwx77O5L._AC_UL600_SR600,600_.jpg" style="width:60.0%" alt="Under The Udala Trees" /> |
+|                                                                               Purple Hibiscus                                                                                |                                                                Under The Udala Trees                                                                |
+|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------:|
+| <img src="https://static.fnac-static.com/multimedia/Images/FR/NR/80/11/44/4460928/1540-0/tsp20190111222358/Purple-Hibiscus.jpg" style="width:50.0%" alt="Purple Hibiscus" /> | <img src="https://images-eu.ssl-images-amazon.com/images/I/81lkwx77O5L._AC_UL600_SR600,600_.jpg" style="width:50.0%" alt="Under The Udala Trees" /> |
 
 Ramalingam (2021) helped me do this sort of table with the pictures of
 the books I am mentioning in this report.
