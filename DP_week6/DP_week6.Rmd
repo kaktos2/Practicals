@@ -2,17 +2,66 @@
 title: "DP_week6"
 author: "Cátia Reis"
 date: "06/04/2022"
-output: html_document
+output: 
+  github_document:
+    toc: true
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Data practical
+## Week 6 
 
-* Load some data (sets) and describe your data and its variables
-* Formulate two questions about the data that you want to visualize
-* [Decide how to visualize your variables](https://www.data-to-viz.com)
-* Convert your data types if needed, e.g., [to factors](https://swcarpentry.github.io/r-novice-inflammation/12-supp-factors/index.html)
-* Create your plots and explain in prose what the data visualizes (see example above)
+### Paper planes
+
+For this week's report, the dataset I will take is from an experiment that I did with Bastien Nespolo for a class called "Coordination, representations, communication". We had a condition in which a participant (later, the teacher) would learn how to do a paper plane. The other condition, the teacher had to teach another participant (the student) how to do the paper plane. Finally, we measured the performance of the flight by collecting their time and distance of flight of the paper planes. 
+
+```{r}
+library(dplyr)
+library(ggplot2)
+library(ggthemes) # if using themes
+```
+
+Let's load the dataset from the csv file that we have in the week6's folder:
+
+```{r}
+coordination<-read.table(file="coordination.csv", header=TRUE, sep=";",dec=",") 
+```
+
+```{r}
+str(coordination)
+```
+
+In the coordination dataset, you will find 7 numerical variables, 4 integer variables and 1 character variable. 
+
+**Question 1** : Is there an impact of feedback on the performance of the paper planes ?
+
+For this, let's make a plot that allows us to visualize both time and feedback percentage. 
+
+```{r}
+ggplot(coordination, aes(feedback_percentage, average_distance, colour=roles,label=rownames(coordination))) + geom_point() + labs(y = "Average distance (cm)", x = "Feedback percentage")+  geom_text(hjust = -0.4) 
+```
+
+"This boxplot an interesting line it shows, 
+Maybe even a correlation who knows, 
+
+The feedback percentage, 
+A matter of age it isn't, 
+But yes, a great present.
+
+The greater the feedback,
+Of [?] there is no lack, <!-- word missing-->
+The longer the distance, 
+Maybe this is a great performance." 
+
+
+**Question 2** : Is the last throw different than the first throw of both conditions ? <!-- changer couleurs-->
+
+```{r}
+ggplot(coordination, aes(distance1, distance2, colour=roles,label=rownames(coordination))) + geom_point() + labs(y = "Distance 2", x = "Distance 1")+  geom_text(hjust = -0.4)
+
+```
+
+
+

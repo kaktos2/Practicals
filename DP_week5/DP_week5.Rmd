@@ -1,22 +1,69 @@
 ---
 title: "DP_week5"
 author: "Cátia Reis"
-date: "06/04/2022"
-output: html_document
+date: "`r Sys.Date()`"
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Data practical
+## Data visualization
 
-For this week's data practical, follow these steps (in which ever order works best for you and your data):
 
-* Find a data set of interest -- if it is not tabular, make it tabular
-* Load the data set and provide a description of its contents (what are the variables?) and data types
-* Transform the data set into long format if it is in wide format
-* Transform the data set into wide format if it is in long format
+Here are our beloved packages (bibliography in the previous reports). 
+<!--verifier-->
+
+```{r , message=F, warning=F}
+library(dslabs)
+library(knitr)
+library(tidyverse)
+library(tidyr)
+```
+
+Here is my dataset of interest for this practical. I was looking for a fun dataset on the web but, I was getting lost in searching. 
+Thus, I ended up choosing one of r's datasets named "warpbreaks". 
+
+First, let's load it. 
+
+```{r}
+data(warpbreaks)
+```
+
+To understand this dataset, we need a bit of knowledge on weaving to understand what the variables represent. 
+![](https://upload.wikimedia.org/wikipedia/commons/5/5e/Warp_and_weft_2.jpg)
+This pitcure shows you what is meant by a warp. 
+
+Source: By Alfred Barlow, Ryj, PKM - Adapted from The History and Principles of Weaving by Hand and by Power by , 1878, S. Low, Marston, Searle &amp; Rivington, London., CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=94725908
+
+
+Here is its structure.
+
+```{r}
+str(warpbreaks)
+```
+In this dataset, we find 1 numerical variable and 2 factor variables. The break is the number of breaks in a warp. There are two types of wool (A or B). And finally, there are three levels of tension which are low (L), medium (M) and high (H).
+
+
+
+```{r}
+data(starwars)
+```
+
+```{r}
+starwars_long <- starwars %>% 
+  pivot_longer(c("mass","birth_year"), names_to = "variable")
+starwars_long %>% head() %>% kable()
+
+```
+
+```{r}
+starwars_long %>% kable()
+```
+
+
+
 * Make sure your data is in [tidy format](https://r4ds.had.co.nz/tidy-data.html)
 * Take a column in your data set and split the columns values into new columns with `separate()`
 * Take data from two or more columns and `unite()`
