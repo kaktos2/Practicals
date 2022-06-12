@@ -2,7 +2,9 @@
 title: "3_DP_CatiaReis"
 author: "Cátia Reis"
 date: "12/03/2022"
-output: html_document
+output: 
+  github_document:
+    toc: true
 bibliography: referencesDP3.bib
 ---
 
@@ -10,13 +12,13 @@ bibliography: referencesDP3.bib
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## PRACTICAL 3 - DATA
+## Practical - Week 3
 
-```{r}
+```{r, message= F , warning= F}
 library(dslabs)
 ```
 
-### Dataset numero 1 - Built-in R dataset
+### Dataset 1 - Built-in R dataset
 
 In the following code-chunk, I load the built-in R dataset called "Titanic" in which we find basic information about passengers who have survived the Titanic :
 
@@ -37,7 +39,7 @@ In the R output (see above), we see that there are four CHARACTER variables in t
 
 **Statistical data types.** These four variables are called NOMINAL QUALITATIVE variables. I hesitated to say that the "class" variable was *ordinal* because of the sequence "1st, 2nd, 3rd" but "crew" didn't quite fit in this. 
 
-### Data set numero 2 - External dataset 
+### Data set 2 - External dataset 
 
 Here, I load the dataset called "skate_soundtrack_data" done by @misc which includes data on **skate soundtracks** used in skateboarding videos. 
 
@@ -63,7 +65,7 @@ The remaining variables are character variables :
 - genre_fake : qualitative nominal
 - genre : qualitative nominal
 
-### Dataset numero 3 - Dataset from dslabs package
+### Dataset 3 - Dataset from dslabs package
 
 Same old, same old, looking at the type of variables we find in the 'movielens' dataset. 
 ```{r}
