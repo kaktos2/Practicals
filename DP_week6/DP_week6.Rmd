@@ -5,22 +5,22 @@ date: "06/04/2022"
 output: 
   github_document:
     toc: true
+bibliography: ref_DP6.bib
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Week 6 
+## Paper planes experiment 
 
-### Paper planes
+### Loading the dataset
 
-For this week's report, the dataset I will take is from an experiment that I did with Bastien Nespolo for a class called "Coordination, representations, communication". We had a condition in which a participant (later, the teacher) would learn how to do a paper plane. The other condition, the teacher had to teach another participant (the student) how to do the paper plane. Finally, we measured the performance of the flight by collecting their time and distance of flight of the paper planes. 
+For this week's report, the dataset I will take is from an experiment that I did with Bastien Nespolo for a class called "Coordination, representations, communication". We had a condition in which a participant (later, the teacher) would learn how to do a paper plane. The other condition, the teacher had to teach another participant (the student) how to do the paper plane. Finally, we measured the performance of the flight by collecting their time and distance of flight of the paper [planes](https://youtu.be/FlE7mRZImuQ?t=48). 
 
-```{r}
+```{r, message=F,warning=F}
 library(dplyr)
 library(ggplot2)
-library(ggthemes) # if using themes
 ```
 
 Let's load the dataset from the csv file that we have in the week6's folder:
@@ -37,31 +37,29 @@ In the coordination dataset, you will find 7 numerical variables, 4 integer vari
 
 **Question 1** : Is there an impact of feedback on the performance of the paper planes ?
 
-For this, let's make a plot that allows us to visualize both time and feedback percentage. 
+For this, let's make a plot that allows us to visualize both distance and feedback percentage. 
 
 ```{r}
 ggplot(coordination, aes(feedback_percentage, average_distance, colour=roles,label=rownames(coordination))) + geom_point() + labs(y = "Average distance (cm)", x = "Feedback percentage")+  geom_text(hjust = -0.4) 
 ```
 
-"This boxplot an interesting line it shows, 
-Maybe even a correlation who knows, 
+We have an outlier, **student 12** has one of the best performances and has one of the highest percentage of feedback. Nevertheless, we do see there seems to be a tendency where there is a link where the increase of one increases the other.  
 
-The feedback percentage, 
-A matter of age it isn't, 
-But yes, a great present.
-
-The greater the feedback,
-Of [?] there is no lack, <!-- word missing-->
-The longer the distance, 
-Maybe this is a great performance." 
-
-
-**Question 2** : Is the last throw different than the first throw of both conditions ? <!-- changer couleurs-->
+**Question 2** : Did the students' plane do a similar performance as their teacher's ? 
 
 ```{r}
-ggplot(coordination, aes(distance1, distance2, colour=roles,label=rownames(coordination))) + geom_point() + labs(y = "Distance 2", x = "Distance 1")+  geom_text(hjust = -0.4)
-
+ggplot(coordination, aes(average_distance, average_flying_time, colour=roles,label=rownames(coordination))) + geom_point() + labs(y = "Average Distance (cm)", x = "Average Flying Time (sec)") +  geom_text(hjust = -0.4)
 ```
 
+
+We see in this plot that time and distance seem correlated. And to answer question 2, we can see that it is not always the case that the teacher does the same performance as the teacher. For example, teacher 19 has both high distance and time while their student (number 20) is amongst the 'worse' performances of our data. On the other hand, we can see that 17 and 18 or even 15 and 16 did a rather similar performance. 
+
+---
+nocite: |
+  @wickham_ggplot2_2022
+---
+
+
+# References
 
 
