@@ -100,3 +100,15 @@ I can only think of Justin Timberlake’s spaghetti hair.
 Is hair frosting impacted by boys’ hair color?
 
 #### Statistical test
+
+summary(lm(band \~ height , data = boyband))
+
+``` r
+qplot(x = band, y = height, data = boyband, geom = "boxplot", fill = band) + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+  theme(legend.position="none")
+```
+
+    ## Warning: Removed 115 rows containing non-finite values (stat_boxplot).
+
+![](DP_week7_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->

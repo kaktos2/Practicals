@@ -27,7 +27,7 @@ There are only character variables except "height" which is integer. They are al
 Let's take the binary variable "hair_frosted" because that is very funny to me. 
 
 ```{r}
-ggplot(boyband, aes(x = hair_frosted)) +  geom_bar()
+ggplot(boyband, aes(x = height)) +  geom_bar()
 ```
 We see we have an odd plot since we didn't really clean our data. There are empty cells. Still, we see that the majority of band members do not have frosted hair. 
 
@@ -44,6 +44,17 @@ Is hair frosting impacted by boys' hair color?
 
 #### Statistical test
 
+```{r}
+lm_1<-lm(height ~ band  , data = boyband)
+summary(lm_1)
+```
 
+
+```{r}
+
+qplot(x = band, y = height, data = boyband, geom = "boxplot", fill = band) + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+  theme(legend.position="none")
+```
 
 
