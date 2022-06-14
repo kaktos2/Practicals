@@ -15,7 +15,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 Here are our beloved packages (bibliography in the previous reports). 
-<!--verifier-->
 
 ```{r , message=F, warning=F}
 library(dslabs)
@@ -81,7 +80,7 @@ head(warpbreaks_divorced)
 
 ### Plot 
 
-Let's create a plot with our warpbreaks dataset. Let's plot wool and breaks to see the difference of breaks whether it's A or B. <!-- modify-->
+Let's create a plot with our warpbreaks dataset. Let's plot wool and breaks to see the difference of breaks whether it's A or B. 
 
 ```{r}
 ggplot(warpbreaks,aes(tension,breaks,fill=wool)) + geom_boxplot() +  scale_fill_brewer(palette="Accent")

@@ -11,7 +11,6 @@ Cátia Reis
 ## Data visualization
 
 Here are our beloved packages (bibliography in the previous reports).
-<!--verifier-->
 
 ``` r
 library(dslabs)
@@ -160,7 +159,6 @@ head(warpbreaks_divorced)
 
 Let’s create a plot with our warpbreaks dataset. Let’s plot wool and
 breaks to see the difference of breaks whether it’s A or B.
-<!-- modify-->
 
 ``` r
 ggplot(warpbreaks,aes(tension,breaks,fill=wool)) + geom_boxplot() +  scale_fill_brewer(palette="Accent")
