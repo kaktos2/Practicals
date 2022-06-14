@@ -5,6 +5,7 @@ Cátia Reis
 
 ``` r
 library(ggplot2)
+library(dplyr)
 ```
 
 ## Boybands
@@ -76,32 +77,52 @@ as “facial_hair” or which “accessories” they have along with their
 
 ### Visualizing
 
-Let’s take the binary variable “hair_frosted” because that is very funny
-to me.
+Our data has some blank spaces, let’s make it clearer for R that there
+are NAs.
 
 ``` r
-ggplot(boyband, aes(x = hair_frosted)) +  geom_bar()
+boyband1 <- boyband %>% mutate_all(na_if,"")
 ```
 
-![](DP_week7_files/figure-gfm/unnamed-chunk-3-1.png)<!-- --> We see we
-have an odd plot since we didn’t really clean our data. There are empty
-cells. Still, we see that the majority of band members do not have
-frosted hair.
+Now that we’ve cleared the blanks, let’s see what our data tells us.
+Since we have quite a lot of variables, let’s look at the hair styles
+found in the different bands.
+
+``` r
+ggplot(boyband1,aes(y=band))+geom_bar(aes(fill=hair_style)) + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+```
+
+![](DP_week7_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+
+Wow! That’s quite a lot of hair styles.
 
 ### Statistics
 
 [Cool statistics song](https://youtu.be/BvWefB4NGGI?t=22)
 
-#### Hypothesis
+#### Hypotheses
 
-This might not be the most interesting idea of hypothesis, but I wonder,
-I can only think of Justin Timberlake’s spaghetti hair.
-
-Is hair frosting impacted by boys’ hair color?
+-   **H1** : Members from the same boyband are more likely to have the
+    same hair style.
+-   **H0** : Pertaining to a certain boyband has no impact on your hair
+    style.
 
 #### Statistical test
 
-summary(lm(band \~ height , data = boyband))
+``` r
+chisq.test(boyband1$band,boyband1$hair_style)
+```
+
+    ## Warning in chisq.test(boyband1$band, boyband1$hair_style): Chi-squared
+    ## approximation may be incorrect
+
+    ## 
+    ##  Pearson's Chi-squared test
+    ## 
+    ## data:  boyband1$band and boyband1$hair_style
+    ## X-squared = 1609.3, df = 1026, p-value < 2.2e-16
+
+#### ohter
 
 ``` r
 qplot(x = band, y = height, data = boyband, geom = "boxplot", fill = band) + 
@@ -111,4 +132,4 @@ qplot(x = band, y = height, data = boyband, geom = "boxplot", fill = band) +
 
     ## Warning: Removed 115 rows containing non-finite values (stat_boxplot).
 
-![](DP_week7_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+![](DP_week7_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
