@@ -64,4 +64,7 @@ ggplot(coordination,aes(feedback_percentage,average_flying_time,label=rownames(c
     geom_point() + labs(y ="Average flying time (in seconds)" , x = "Feedback percentage") + geom_text(hjust = -0.3)+geom_smooth(method = "lm", se = TRUE,color="black")  
 ```
 
-
+```{r}
+new<-coordination %>% filter(roles=="Teacher")
+mean(new$learning_time)
+```
