@@ -2,16 +2,20 @@
 title: "week8_DP"
 author: "Cátia Reis"
 date: "13/04/2022"
-output: html_document
+output: 
+  github_document:
+  toc: true
 ---
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Paper plane experiment
-```{r}
+```{r message=F, warning=F}
 library(dplyr)
+library(ggplot2)
 ```
 ### The dataset 
 
@@ -34,14 +38,30 @@ In this experiment, we used a paper plane task to understand if face-to-face int
 cor.test(coordination$feedback_percentage,coordination$average_flying_time)
 cor.test(coordination$feedback_percentage,coordination$average_distance)
 ```
-There is a positive correlation between the two and the p-value is below 0.05 which tells us it is significant. Correlation does not mean causation. 
+There is a positive correlation between the two and the p-value is below 0.05 which tells us it is significant. Correlation does not imply causation. 
 
-This correlation implies causation?
 Now fit your model in a (General) Linear Model (remember the assumptions)
-Which model describes better your data? Explain
-Remember to apply the general suggestion to your report:
 
-add an appropriate header (e.g., title, author, date, output format)
-add some headers and sub-headers
-Add labels to the axes’ plot and add a title for each plot!
-Have fun and try to make the report interesting for the reader! --> 
+```{r}
+general<-lm(coordination$feedback_percentage~coordination$average_distance)
+summary(general)
+```
+
+```{r}
+general<-glm(coordination$feedback_percentage~coordination$average_distance)
+summary(general)
+```
+
+#### Linear model functions
+```{r}
+general<-lm(coordination$feedback_percentage~coordination$average_flying_time)
+summary(general)
+```
+#### Plot with linear model
+
+```{r}
+ggplot(coordination,aes(feedback_percentage,average_flying_time,label=rownames(coordination),color=roles)) +
+    geom_point() + labs(y ="Average flying time (in seconds)" , x = "Feedback percentage") + geom_text(hjust = -0.3)+geom_smooth(method = "lm", se = TRUE,color="black")  
+```
+
+
