@@ -24,7 +24,7 @@ library(dslabs)
 skate <- read.csv("https://raw.githubusercontent.com/the-pudding/data/master/skate-music/soundtrack_data.csv")
 ```
 
-Now, let's filter the skate dataset to look at "Electronic" music with a total of uses in the videos that is equal or superior to 20.
+Now, let's filter the skate dataset to look at "Electronic" music with a total of uses in the videos that is equal or superior to 10.
 ```{r}
 skate_filter<-skate %>% filter(genre=="Electronic",tote>=10)
 skate_filter
@@ -56,7 +56,7 @@ Here, you can see the structure of the dataset.
 str(skate_selected)
 ```
 
-Now, let's arrange our data. It will show the rows ordered by "tote" from the lowest to the highest value.
+Now, let's arrange our data. It will show the rows ordered by "tote" from the highest to the lowest value.
 
 ```{r}
 skate_arranged<-skate_selected %>% arrange(desc(tote,genre))
@@ -86,11 +86,10 @@ If there were NA values in my dataset and I would want to exclude them, I would 
 
 This is all I could think of when I saw we were going to join two datasets : [a good old Friends reference](https://youtu.be/lP2pz7E7hm4?t=15). 
 
-Let's 'merge' the `results_us_election_2016` and `murders` datasets. 
+Let's **merge** the `results_us_election_2016` and `murders` datasets. 
 ```{r}
 head(full_join(results_us_election_2016,murders))
 ```
-<!-- describe relationship -->
 
 ---
 nocite: |

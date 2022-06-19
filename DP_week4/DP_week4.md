@@ -1,7 +1,7 @@
 DP_Week4
 ================
 Cátia Reis
-2022-06-12
+2022-06-19
 
 -   [Data practical 4](#data-practical-4)
 -   [MERGE!](#merge)
@@ -20,7 +20,7 @@ skate <- read.csv("https://raw.githubusercontent.com/the-pudding/data/master/ska
 ```
 
 Now, let’s filter the skate dataset to look at “Electronic” music with a
-total of uses in the videos that is equal or superior to 20.
+total of uses in the videos that is equal or superior to 10.
 
 ``` r
 skate_filter<-skate %>% filter(genre=="Electronic",tote>=10)
@@ -89,7 +89,7 @@ str(skate_selected)
     ##  $ year  : int  2008 2008 2009 2009 2009 2009 2009 2009 2009
 
 Now, let’s arrange our data. It will show the rows ordered by “tote”
-from the lowest to the highest value.
+from the highest to the lowest value.
 
 ``` r
 skate_arranged<-skate_selected %>% arrange(desc(tote,genre))
@@ -149,7 +149,7 @@ This is all I could think of when I saw we were going to join two
 datasets : [a good old Friends
 reference](https://youtu.be/lP2pz7E7hm4?t=15).
 
-Let’s ‘merge’ the `results_us_election_2016` and `murders` datasets.
+Let’s **merge** the `results_us_election_2016` and `murders` datasets.
 
 ``` r
 head(full_join(results_us_election_2016,murders))
@@ -171,8 +171,6 @@ head(full_join(results_us_election_2016,murders))
     ## 4   19378102   517
     ## 5   12830632   364
     ## 6   12702379   457
-
-<!-- describe relationship -->
 
 # References
 
