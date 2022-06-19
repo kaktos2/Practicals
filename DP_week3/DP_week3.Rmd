@@ -30,19 +30,14 @@ data(Titanic)
 str(Titanic)
 ```
 
-In the R output (see above), we see that there are four CHARACTER variables in this data set :  
-
-  1. Class: 1st, 2nd, 3rd, crew
-  2. Sex: Male, Female
-  3. Age: Child, Adult
-  4. Survived: No, yes
+In the R output (see above), we see that there are four CHARACTER variables in this data set.
 
 **Statistical data types.** These four variables are called NOMINAL QUALITATIVE variables. I hesitated to say that the "class" variable was *ordinal* because of the sequence "1st, 2nd, 3rd" but "crew" didn't quite fit in this. 
 
 
 ### Dataset 2 - External dataset 
 
-Here, I load the dataset from The Pudding article by @wilber_good_2018 that has data on **skate soundtracks** used in skateboarding videos. You can find the dataset [here](https://github.com/the-pudding/data/blob/master/skate-music/soundtrack_data.csv). 
+Here, I load the dataset from The Pudding article by @wilber_good_2018 that has data on **skate soundtracks** used in skateboarding videos. You can find the dataset [here](https://github.com/the-pudding/data/blob/master/skate-music/soundtrack_data.csv) or in this folder just in case. 
 
 
 ```{r}
@@ -68,11 +63,11 @@ The remaining variables are character variables :
 
 ### Dataset 3 - Dataset from dslabs
 
-Same old, same old, looking at the type of variables we find in the 'movielens' dataset found in the dslabs package [@irizarry_dslabs_2021]. 
+Now, let's look at the `movielens` dataset found in the `dslabs` package [@irizarry_dslabs_2021]. 
 ```{r}
 str(movielens)
 ```
-Out of 7 variables (and I say this with the voice of a loto presenter) we have...: <!-- change?-->
+Out of 7 variables we have...: 
 
 - Four integers : movieId, year, userId, timestamp
 - One character variable: title

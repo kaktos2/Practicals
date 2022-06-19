@@ -40,12 +40,7 @@ str(Titanic)
     ##   ..$ Survived: chr [1:2] "No" "Yes"
 
 In the R output (see above), we see that there are four CHARACTER
-variables in this data set :
-
-1.  Class: 1st, 2nd, 3rd, crew
-2.  Sex: Male, Female
-3.  Age: Child, Adult
-4.  Survived: No, yes
+variables in this data set.
 
 **Statistical data types.** These four variables are called NOMINAL
 QUALITATIVE variables. I hesitated to say that the “class” variable was
@@ -57,7 +52,8 @@ quite fit in this.
 Here, I load the dataset from The Pudding article by Wilber (2018) that
 has data on **skate soundtracks** used in skateboarding videos. You can
 find the dataset
-[here](https://github.com/the-pudding/data/blob/master/skate-music/soundtrack_data.csv).
+[here](https://github.com/the-pudding/data/blob/master/skate-music/soundtrack_data.csv)
+or in this folder just in case.
 
 ``` r
 data_skate <- read.csv("https://raw.githubusercontent.com/the-pudding/data/master/skate-music/soundtrack_data.csv")
@@ -105,9 +101,8 @@ The remaining variables are character variables :
 
 ### Dataset 3 - Dataset from dslabs
 
-Same old, same old, looking at the type of variables we find in the
-‘movielens’ dataset found in the dslabs package (Irizarry and Gill
-2021).
+Now, let’s look at the `movielens` dataset found in the `dslabs` package
+(Irizarry and Gill 2021).
 
 ``` r
 str(movielens)
@@ -122,8 +117,7 @@ str(movielens)
     ##  $ rating   : num  2.5 3 3 2 4 2 2 2 3.5 2 ...
     ##  $ timestamp: int  1260759144 1260759179 1260759182 1260759185 1260759205 1260759151 1260759187 1260759148 1260759125 1260759131 ...
 
-Out of 7 variables (and I say this with the voice of a loto presenter)
-we have…: <!-- change?-->
+Out of 7 variables we have…:
 
 -   Four integers : movieId, year, userId, timestamp
 -   One character variable: title
