@@ -45,9 +45,9 @@ The following quote is from *Under the Udala Trees* and is another of silence. I
 
 Sleep is another domain that fits perfectly into the topic of silence. I think the idea of sleep without dreams can be conceived as a form of silence of our "conscious self". I have this idea that my "self" somewhat 'goes somewhere' or simply is silent for the time I go to sleep. 
 
-In this r code chunk section, we see how I loaded the sleep dataset : 
+In this r code chunk section, we see how I loaded the`sleep` dataset : 
 ```{r}
-data(sleep)   # i am loading the 'sleep' built-in dataset from R Studio
+data(sleep) 
 ```
 Let's see it displayed in a beautiful table. 
 ```{r,  message=F, warning=F}
@@ -60,6 +60,7 @@ See you soon for a new data practical !
 ---
 nocite: |
   @adichie_purple_2017
+  @knitr
 ---
 
 

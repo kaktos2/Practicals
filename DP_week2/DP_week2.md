@@ -1,7 +1,7 @@
 DP_Week2
 ================
 Cátia Reis
-2022-06-12
+2022-06-19
 
 -   [Week 2](#week-2)
     -   [Subjective experience of
@@ -71,10 +71,10 @@ silence of our “conscious self.” I have this idea that my “self”
 somewhat ‘goes somewhere’ or simply is silent for the time I go to
 sleep.
 
-In this r code chunk section, we see how I loaded the sleep dataset :
+In this r code chunk section, we see how I loaded the`sleep` dataset :
 
 ``` r
-data(sleep)   # i am loading the 'sleep' built-in dataset from R Studio
+data(sleep) 
 ```
 
 Let’s see it displayed in a beautiful table.
@@ -130,6 +130,13 @@ Okparanta, Chinelo. 2017. *Under the Udala Trees*. London: Granta.
 Ramalingam, Aravind. 2021. “7 Advanced Markdown Tips!” *Analytics
 Vidhya*.
 <https://medium.com/analytics-vidhya/7-advanced-markdown-tips-5a031620bf52>.
+
+</div>
+
+<div id="ref-knitr" class="csl-entry">
+
+Xie, Yihui. 2022. *Knitr: A General-Purpose Package for Dynamic Report
+Generation in r*. <https://yihui.org/knitr/>.
 
 </div>
 
