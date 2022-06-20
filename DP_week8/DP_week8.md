@@ -8,6 +8,7 @@ Cátia Reis
     -   [Correlation](#correlation)
     -   [General Linear Model](#general-linear-model)
     -   [Plot](#plot)
+-   [Final comment](#final-comment)
 
 ``` r
 library(dplyr)
@@ -57,6 +58,10 @@ coordination %>% kable()
 
 ### Correlation
 
+I picked “average_flying_time” for our response variable in the formula
+we are going to use but we could also be doing this with the
+“average_distance” variable. Let’s see if they are or are not depedent.
+
 ``` r
 cor.test(coordination$feedback_percentage,coordination$average_flying_time)
 ```
@@ -73,54 +78,76 @@ cor.test(coordination$feedback_percentage,coordination$average_flying_time)
     ##       cor 
     ## 0.6706595
 
-``` r
-cor.test(coordination$feedback_percentage,coordination$average_distance)
-```
-
-    ## 
-    ##  Pearson's product-moment correlation
-    ## 
-    ## data:  coordination$feedback_percentage and coordination$average_distance
-    ## t = 3.8286, df = 8, p-value = 0.005028
-    ## alternative hypothesis: true correlation is not equal to 0
-    ## 95 percent confidence interval:
-    ##  0.3539228 0.9518884
-    ## sample estimates:
-    ##      cor 
-    ## 0.804316
-
-There is a positive correlation between the two and the p-value is below
-0.05 which tells us it is significant. However,correlation does not
-imply causation.
+There is a positive correlation between feedback percentage and the
+average flying time of the paper plane. The p-value is below 0.05 which
+tells us it is significant, thus, the variables are not independent.
+However,correlation does not imply causation.
 
 ### General Linear Model
 
+Let’s use the `lm()` function to study the relationship between the
+variables.
+
 ``` r
-general<-lm(coordination$feedback_percentage~coordination$average_distance)
+general<-lm(coordination$feedback_percentage~coordination$average_flying_time)
 summary(general)
 ```
 
     ## 
     ## Call:
-    ## lm(formula = coordination$feedback_percentage ~ coordination$average_distance)
+    ## lm(formula = coordination$feedback_percentage ~ coordination$average_flying_time)
     ## 
     ## Residuals:
-    ##      Min       1Q   Median       3Q      Max 
-    ## -19.6064  -9.3507  -0.1345  10.8848  17.5839 
+    ##     Min      1Q  Median      3Q     Max 
+    ## -20.393  -8.473  -4.799   4.384  27.315 
     ## 
     ## Coefficients:
-    ##                               Estimate Std. Error t value Pr(>|t|)   
-    ## (Intercept)                   -4.64265   10.98589  -0.423  0.68372   
-    ## coordination$average_distance  0.08275    0.02161   3.829  0.00503 **
+    ##                                  Estimate Std. Error t value Pr(>|t|)  
+    ## (Intercept)                        -7.296     17.077  -0.427   0.6805  
+    ## coordination$average_flying_time   17.856      6.982   2.557   0.0338 *
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     ## 
-    ## Residual standard error: 13.04 on 8 degrees of freedom
+    ## Residual standard error: 16.27 on 8 degrees of freedom
     ##   (10 observations deleted due to missingness)
-    ## Multiple R-squared:  0.6469, Adjusted R-squared:  0.6028 
-    ## F-statistic: 14.66 on 1 and 8 DF,  p-value: 0.005028
+    ## Multiple R-squared:  0.4498, Adjusted R-squared:  0.381 
+    ## F-statistic:  6.54 on 1 and 8 DF,  p-value: 0.03379
+
+Let’s add “learning_time” to our model and see if this is better…
+
+``` r
+general2<-lm(coordination$feedback_percentage~coordination$average_flying_time+coordination$learning_time)
+summary(general2)
+```
+
+    ## 
+    ## Call:
+    ## lm(formula = coordination$feedback_percentage ~ coordination$average_flying_time + 
+    ##     coordination$learning_time)
+    ## 
+    ## Residuals:
+    ##     Min      1Q  Median      3Q     Max 
+    ## -22.560  -6.139  -2.436   5.700  23.500 
+    ## 
+    ## Coefficients:
+    ##                                  Estimate Std. Error t value Pr(>|t|)  
+    ## (Intercept)                       -29.191     31.866  -0.916   0.3901  
+    ## coordination$average_flying_time   20.843      8.004   2.604   0.0352 *
+    ## coordination$learning_time          2.185      2.662   0.821   0.4388  
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    ## 
+    ## Residual standard error: 16.62 on 7 degrees of freedom
+    ##   (10 observations deleted due to missingness)
+    ## Multiple R-squared:  0.4981, Adjusted R-squared:  0.3547 
+    ## F-statistic: 3.474 on 2 and 7 DF,  p-value: 0.08957
+
+Well, it doesn’t seem like adding learning time adds anything
+significant.
 
 ### Plot
+
+Let’s make our “general” model visual.
 
 ``` r
 ggplot(coordination,aes(feedback_percentage,average_flying_time,label=rownames(coordination),color=roles)) +
@@ -135,4 +162,33 @@ ggplot(coordination,aes(feedback_percentage,average_flying_time,label=rownames(c
 
     ## Warning: Removed 10 rows containing missing values (geom_text).
 
-![](DP_week8_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+![](DP_week8_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+
+With the summary of the model and this plot, we see that there is a
+significant impact of feedback percentage on the performance of the
+planes. But we also see that for example value 12 clearly pushes a bit
+the line. Still, we can imagine that without it, the pattern would look
+something a bit similar. There is also something interesting with number
+12. All teachers (while teaching their student how to make the plane)
+decided to do the paper plane at the same time as the student to show
+them visually how to make it. However, number 12’s teacher decided
+simply to give oral instructions and did not make a plane
+simultaneously. So, this might explain why there is such a big
+difference of feedback.
+
+#### Some comments
+
+-   For future research it would definitely be interesting to tell the
+    teachers to only give oral instructions to the students.
+-   Our sample size is too small so our measures might be lucky.
+-   We measured “learning performance” by recording the performance of
+    the paper planes. However, this measure might not be a good learning
+    performance measure as there could be potential confounding
+    variables.
+
+## Final comment
+
+Thank you for all the tools you gave us to learn. Hopefully these
+practicals weren’t too boring.
+
+Have a great summer !

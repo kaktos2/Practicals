@@ -33,12 +33,12 @@ coordination %>% kable()
 
 ### Correlation
 
-I picked "average_flying_time" for our response variable in the formula we are going to use but we could also be doing this with the "average_distance" variable. 
+I picked "average_flying_time" for our response variable in the formula we are going to use but we could also be doing this with the "average_distance" variable. Let's see if they are or are not depedent. 
 
 ```{r}
 cor.test(coordination$feedback_percentage,coordination$average_flying_time)
 ```
-There is a positive correlation between the two and the p-value is below 0.05 which tells us it is significant. However,correlation does not imply causation. 
+There is a positive correlation between feedback percentage and the average flying time of the paper plane. The p-value is below 0.05 which tells us it is significant, thus, the variables are not independent. However,correlation does not imply causation. 
 
 
 ### General Linear Model
@@ -48,17 +48,36 @@ Let's use the `lm()` function to study the relationship between the variables.
 general<-lm(coordination$feedback_percentage~coordination$average_flying_time)
 summary(general)
 ```
-
+Let's add "learning_time" to our model and see if this is better...
+```{r}
+general2<-lm(coordination$feedback_percentage~coordination$average_flying_time+coordination$learning_time)
+summary(general2)
+```
+Well, it doesn't seem like adding learning time adds anything significant. 
 
 ### Plot 
 
-Let's make this visual. 
+Let's make our "general" model visual.  
 
 ```{r}
 ggplot(coordination,aes(feedback_percentage,average_flying_time,label=rownames(coordination),color=roles)) +
     geom_point() + labs(y ="Average flying time (in seconds)" , x = "Feedback percentage") + geom_text(hjust = -0.3)+geom_smooth(method = "lm", se = TRUE,color="black")  
 ```
 
-With the summary of the model and this plot, we see that there is a significant impact of feedback percentage on the performance of the planes. 
 
+With the summary of the model and this plot, we see that there is a significant impact of feedback percentage on the performance of the planes. But we also see that for example value 12 clearly pushes a bit the line. Still, we can imagine that without it, the pattern would look something a bit similar. There is also something interesting with number 12. All teachers (while teaching their student how to make the plane) decided to do the paper plane at the same time as the student to show them visually how to make it. However, number 12's teacher decided simply to give oral instructions and did not make a plane simultaneously. So, this might explain why there is such a big difference of feedback. 
+
+#### Some comments
+
+- For future research it would definitely be interesting to tell the teachers to only give oral instructions to the students. 
+- Our sample size is too small so our measures might be lucky. 
+- We measured "learning performance" by recording the performance of the paper planes. However, this measure might not be a good learning performance measure as there could be potential confounding variables. 
+
+
+
+## Final comment 
+
+Thank you for all the tools you gave us to learn. Hopefully these practicals weren't too boring. 
+
+Have a great summer ! 
 
