@@ -1,20 +1,19 @@
 DP_Week2
 ================
 Cátia Reis
-2022-06-19
+2022-06-20
 
--   [Week 2](#week-2)
-    -   [Subjective experience of
-        silence](#subjective-experience-of-silence)
-    -   [Loading a dataset](#loading-a-dataset)
+-   [Subjective experience of
+    silence](#subjective-experience-of-silence)
+    -   [Purple Hibiscus & Under the Udala
+        Trees](#purple-hibiscus--under-the-udala-trees)
+    -   [Sleep (loading a dataset)](#sleep-loading-a-dataset)
 -   [References](#references)
 
-## Week 2
-
-### Subjective experience of silence
+## Subjective experience of silence
 
 For my Master thesis, or, at least, for my internship, I will be
-exploring **silence** somewhere in Italy. I like the concept of silence
+exploring the concept of **silence**. I like the concept of silence
 because it can mean different things for different persons but it can
 also be explored in so many different ways.
 
@@ -36,7 +35,7 @@ These are only a few ideas of what silence could mean, and this can vary
 with people. Some people find silence in environments I would call noisy
 and vice-versa.
 
-#### Purple Hibiscus & Under the Udala Trees
+### Purple Hibiscus & Under the Udala Trees
 
 Back in 2021, I did a semester in the English Master and we had to read
 Chimamanda Ngozi Adichie’s *Purple Hibiscus* and Chinelo Okparanta’s
@@ -50,11 +49,11 @@ to communicate with each other.
 |:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------:|
 | <img src="https://static.fnac-static.com/multimedia/Images/FR/NR/80/11/44/4460928/1540-0/tsp20190111222358/Purple-Hibiscus.jpg" style="width:50.0%" alt="Purple Hibiscus" /> | <img src="https://images-eu.ssl-images-amazon.com/images/I/81lkwx77O5L._AC_UL600_SR600,600_.jpg" style="width:50.0%" alt="Under The Udala Trees" /> |
 
-Ramalingam (2021) helped me do this sort of table with the pictures of
-the books I am mentioning in this report.
+Shoutout to Ramalingam (2021) for this sort of table with the pictures
+of the books I am mentioning.
 
-The following quote is from *Under the Udala Trees* and is another of
-silence. In this passage, the main character gets silenced by another
+The following quote is from *Under the Udala Trees* and is another kind
+of silence. In this passage, the main character gets silenced by another
 character :
 
 > ‘There are punishments for people who’ve done what I’ve done,’ I began
@@ -63,7 +62,7 @@ character :
 > the words that had been getting ready to make their way out of my
 > mouth. (Okparanta 2017, 233)
 
-### Loading a dataset
+### Sleep (loading a dataset)
 
 Sleep is another domain that fits perfectly into the topic of silence. I
 think the idea of sleep without dreams can be conceived as a form of
