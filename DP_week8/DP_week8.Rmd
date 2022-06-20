@@ -75,9 +75,11 @@ With the summary of the model and this plot, we see that there is a significant 
 
 
 
-## Final comment 
+## Final words
 
 Thank you for all the tools you gave us to learn. Hopefully these practicals weren't too boring. 
 
 Have a great summer ! 
+
+![i am not a virus](qr.JPG)
 

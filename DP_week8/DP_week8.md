@@ -8,7 +8,7 @@ Cátia Reis
     -   [Correlation](#correlation)
     -   [General Linear Model](#general-linear-model)
     -   [Plot](#plot)
--   [Final comment](#final-comment)
+-   [Final words](#final-words)
 
 ``` r
 library(dplyr)
@@ -186,9 +186,11 @@ difference of feedback.
     performance measure as there could be potential confounding
     variables.
 
-## Final comment
+## Final words
 
 Thank you for all the tools you gave us to learn. Hopefully these
 practicals weren’t too boring.
 
 Have a great summer !
+
+![i am not a virus](qr.JPG)
