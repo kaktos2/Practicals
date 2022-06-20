@@ -16,6 +16,11 @@ library(dplyr)
 
 ## Boybands dataset
 
+This dataset was used in a [Pudding
+article](https://pudding.cool/2018/11/boy-bands/). You canaslo find the
+dataset
+[here](https://github.com/the-pudding/data/blob/master/boybands/boys.csv).
+
 ``` r
 boyband<-read.csv("https://raw.githubusercontent.com/the-pudding/data/master/boybands/boys.csv")
 str(boyband)
