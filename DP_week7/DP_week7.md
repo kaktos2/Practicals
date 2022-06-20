@@ -1,14 +1,20 @@
 DP_week7
 ================
 Cátia Reis
-06/04/2022
+2022-06-20
+
+-   [Boybands dataset](#boybands-dataset)
+    -   [Data types](#data-types)
+    -   [Visualizing](#visualizing)
+    -   [Hypotheses](#hypotheses)
+    -   [Statistics](#statistics)
 
 ``` r
 library(ggplot2)
 library(dplyr)
 ```
 
-## Boybands
+## Boybands dataset
 
 ``` r
 boyband<-read.csv("https://raw.githubusercontent.com/the-pudding/data/master/boybands/boys.csv")
@@ -36,7 +42,7 @@ str(boyband)
     ##  $ bottom_color: chr  "black" "black" "black" "black" ...
 
 ``` r
-head(boyband)
+head(boyband) 
 ```
 
     ##             band          name       dob hair_color hair_frosted hair_length
@@ -68,6 +74,8 @@ head(boyband)
     ## 5        blue        black        black
     ## 6       white                      gray
 
+### Data types
+
 There are only character variables except “height” which is integer.
 They are all qualitative nominal while the former is quantitative
 discrete. In this dataset you find the “name” of each band member, the
@@ -89,47 +97,40 @@ Since we have quite a lot of variables, let’s look at the hair styles
 found in the different bands.
 
 ``` r
-ggplot(boyband1,aes(y=band))+geom_bar(aes(fill=hair_style)) + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+ggplot(boyband1,aes(y=band))+geom_bar(aes(fill=hair_style)) + theme(axis.text.y = element_text(angle = 360, vjust = 0.3, hjust=1,size=6))
 ```
 
 ![](DP_week7_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
-Wow! That’s quite a lot of hair styles.
+Wow! That’s quite a lot of hair styles. BTS, New Edition and Musical
+Youth are among the bands in which group members have the same
+hairstyles for all members. Then we have *Color Me Badd*, a band in
+which the four members have all different hairstyles.
 
-### Statistics
-
-[Cool statistics song](https://youtu.be/BvWefB4NGGI?t=22)
-
-#### Hypotheses
+### Hypotheses
 
 -   **H1** : Members from the same boyband are more likely to have the
     same hair style.
 -   **H0** : Pertaining to a certain boyband has no impact on your hair
     style.
 
-#### Statistical test
+### Statistics
+
+[Cool statistics song](https://youtu.be/BvWefB4NGGI?t=22)
+
+Let’s use the Chi-squared test because we have categorical data.
 
 ``` r
-chisq.test(boyband1$band,boyband1$hair_style)
+chisq.test(table(boyband1$band,boyband1$hair_style))
 ```
 
-    ## Warning in chisq.test(boyband1$band, boyband1$hair_style): Chi-squared
+    ## Warning in chisq.test(table(boyband1$band, boyband1$hair_style)): Chi-squared
     ## approximation may be incorrect
 
     ## 
     ##  Pearson's Chi-squared test
     ## 
-    ## data:  boyband1$band and boyband1$hair_style
+    ## data:  table(boyband1$band, boyband1$hair_style)
     ## X-squared = 1609.3, df = 1026, p-value < 2.2e-16
 
-#### ohter
-
-``` r
-qplot(x = band, y = height, data = boyband, geom = "boxplot", fill = band) + 
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
-  theme(legend.position="none")
-```
-
-    ## Warning: Removed 115 rows containing non-finite values (stat_boxplot).
-
-![](DP_week7_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+It seems we can reject the null hypothesis since our p-value is \<0.05.

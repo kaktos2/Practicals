@@ -1,8 +1,10 @@
 ---
 title: "DP_week7"
 author: "Cátia Reis"
-date: "06/04/2022"
-output: github_document
+date: "`r Sys.Date()`"
+output: 
+  github_document: 
+    toc : true
 ---
 
 ```{r setup, include=FALSE}
@@ -14,12 +16,14 @@ library(ggplot2)
 library(dplyr)
 ```
 
-## Boybands 
+## Boybands dataset
 ```{r}
 boyband<-read.csv("https://raw.githubusercontent.com/the-pudding/data/master/boybands/boys.csv")
 str(boyband)
-head(boyband)
+head(boyband) 
 ```
+
+### Data types
 
 There are only character variables except "height" which is integer. They are all qualitative nominal while the former is quantitative discrete. In this dataset you find the "name" of each band member, the name of the band and then physical characteristics of the members such as "facial_hair" or which "accessories" they have along with their "eyes" color, and other ones. 
 
@@ -32,31 +36,27 @@ boyband1 <- boyband %>% mutate_all(na_if,"")
 ```
 
 Now that we've cleared the blanks, let's see what our data tells us. Since we have quite a lot of variables, let's look at the hair styles found in the different bands.  
+
 ```{r}
-ggplot(boyband1,aes(y=band))+geom_bar(aes(fill=hair_style)) + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+ggplot(boyband1,aes(y=band))+geom_bar(aes(fill=hair_style)) + theme(axis.text.y = element_text(angle = 360, vjust = 0.3, hjust=1,size=6))
 ```
 
-Wow! That's quite a lot of hair styles. 
+Wow! That's quite a lot of hair styles. BTS, New Edition and Musical Youth are among the bands in which group members have the same hairstyles for all members. Then we have *Color Me Badd*, a band in which the four members have all different hairstyles. 
+
+### Hypotheses
+
+- **H1** : Members from the same boyband are more likely to have the same hair style. 
+- **H0** : Pertaining to a certain boyband has no impact on your hair style. 
 
 ###  Statistics
 
 [Cool statistics song](https://youtu.be/BvWefB4NGGI?t=22)
 
-#### Hypotheses
-
-- **H1** : Members from the same boyband are more likely to have the same hair style. 
-- **H0** : Pertaining to a certain boyband has no impact on your hair style. 
-
-#### Statistical test
+Let's use the Chi-squared test because we have categorical data. 
 
 ```{r}
-chisq.test(boyband1$band,boyband1$hair_style)
+chisq.test(table(boyband1$band,boyband1$hair_style))
 ```
-#### ohter
-```{r}
 
-qplot(x = band, y = height, data = boyband, geom = "boxplot", fill = band) + 
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
-  theme(legend.position="none")
-```
+It seems we can reject the null hypothesis since our p-value is <0.05.  
 
