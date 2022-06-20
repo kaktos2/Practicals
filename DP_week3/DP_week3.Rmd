@@ -1,7 +1,7 @@
 ---
 title: "DP_week3"
 author: "Cátia Reis"
-date: "12/03/2022"
+date: "`r Sys.Date()`"
 output: 
   github_document:
     toc: true
