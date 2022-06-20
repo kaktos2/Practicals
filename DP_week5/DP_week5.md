@@ -1,16 +1,14 @@
 DP_week5
 ================
 Cátia Reis
-2022-06-14
+2022-06-20
 
--   [Data visualization](#data-visualization)
-    -   [Marriage between 3 columns](#marriage-between-3-columns)
-    -   [The break-up](#the-break-up)
+-   [The warpbreaks dataset](#the-warpbreaks-dataset)
+    -   [Data types](#data-types)
+    -   [From wide to long data](#from-wide-to-long-data)
+    -   [The marriage (unite)](#the-marriage-unite)
+    -   [The divorce (separate)](#the-divorce-separate)
     -   [Plot](#plot)
-
-## Data visualization
-
-Here are our beloved packages (bibliography in the previous reports).
 
 ``` r
 library(dslabs)
@@ -19,9 +17,11 @@ library(tidyverse)
 library(tidyr)
 ```
 
-Here is my dataset of interest for this practical. I was looking for a
-fun dataset on the web but, I was getting lost in searching. Thus, I
-ended up choosing one of r’s datasets named “warpbreaks”.
+## The warpbreaks dataset
+
+I was looking for a fun dataset on the web but, I was getting lost in
+searching. Thus, I ended up choosing one of r’s datasets named
+`warpbreaks`.
 
 First, let’s load it.
 
@@ -29,17 +29,16 @@ First, let’s load it.
 data(warpbreaks)
 ```
 
-To understand this dataset, we need a bit of knowledge on weaving to
-understand what the variables represent.
-![](https://upload.wikimedia.org/wikipedia/commons/5/5e/Warp_and_weft_2.jpg)
-This picture shows you what is meant by a warp.
+I did not know what a warp was so I looked it up. I came across this
+picture which made it both clearer and not at the same time :
 
-Source: By Alfred Barlow, Ryj, PKM - Adapted from The History and
-Principles of Weaving by Hand and by Power by , 1878, S. Low, Marston,
-Searle & Rivington, London., CC BY-SA 3.0,
-<https://commons.wikimedia.org/w/index.php?curid=94725908>
+|                                                                                  ![](https://upload.wikimedia.org/wikipedia/commons/5/5e/Warp_and_weft_2.jpg)                                                                                  |
+|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| Source: By Alfred Barlow, Ryj, PKM - Adapted from The History and Principles of Weaving by Hand and by Power by , 1878, S. Low, Marston, Searle & Rivington, London., CC BY-SA 3.0, <https://commons.wikimedia.org/w/index.php?curid=94725908> |
 
-Here is its structure.
+### Data types
+
+Here is the structure of the dataset.
 
 ``` r
 str(warpbreaks)
@@ -54,6 +53,12 @@ In this dataset, we find 1 numerical variable and 2 factor variables.
 The break is the number of breaks in a warp. There are two types of wool
 (A or B). And finally, there are three levels of tension which are low
 (L), medium (M) and high (H).
+
+### From wide to long data
+
+In the following code chunk, I make a table that is not great by making
+the column breaks into two columns : one with its values and one which
+says “breaks”.
 
 ``` r
 warpbreaks_long <- warpbreaks %>% 
@@ -118,7 +123,7 @@ warpbreaks_long %>% kable()
 | B    | H       | breaks   |    16 |
 | B    | H       | breaks   |    28 |
 
-### Marriage between 3 columns
+### The marriage (unite)
 
 ![a gif from hihgschool
 musical](https://c.tenor.com/edQRSE78T_YAAAAC/hsm-high-school-musical.gif)
@@ -127,12 +132,22 @@ Let’s put together all the columns we have with the`unite()` function.
 
 ``` r
  warpbreaks_just_married<- warpbreaks%>%unite(unified)
+head(warpbreaks_just_married) %>% kable()
 ```
+
+| unified |
+|:--------|
+| 26_A\_L |
+| 30_A\_L |
+| 54_A\_L |
+| 25_A\_L |
+| 70_A\_L |
+| 52_A\_L |
 
 Usually, I think together we are stronger, but in this case, putting the
 columns together doesn’t seem to make much sense.
 
-### The break-up
+### The divorce (separate)
 
 ![a gif from
 yugioh](https://c.tenor.com/UwHyv90lYwcAAAAd/yugioh-divorce.gif)
@@ -144,21 +159,22 @@ the dataset was warp**breaks**. They were obviously meant to break up
 
 ``` r
 warpbreaks_divorced<-warpbreaks_just_married %>% separate(unified, into=c("breaks","wool", "tension"), sep="_")
-head(warpbreaks_divorced)
+head(warpbreaks_divorced) %>% kable()
 ```
 
-    ##   breaks wool tension
-    ## 1     26    A       L
-    ## 2     30    A       L
-    ## 3     54    A       L
-    ## 4     25    A       L
-    ## 5     70    A       L
-    ## 6     52    A       L
+| breaks | wool | tension |
+|:-------|:-----|:--------|
+| 26     | A    | L       |
+| 30     | A    | L       |
+| 54     | A    | L       |
+| 25     | A    | L       |
+| 70     | A    | L       |
+| 52     | A    | L       |
 
 ### Plot
 
-Let’s create a plot with our warpbreaks dataset. Let’s plot wool and
-breaks to see the difference of breaks whether it’s A or B.
+Let’s plot wool and breaks to see the difference of breaks between the A
+and B wool.
 
 ``` r
 ggplot(warpbreaks,aes(tension,breaks,fill=wool)) + geom_boxplot() +  scale_fill_brewer(palette="Accent")
@@ -167,4 +183,4 @@ ggplot(warpbreaks,aes(tension,breaks,fill=wool)) + geom_boxplot() +  scale_fill_
 ![](DP_week5_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
 It seems wool “A” has the most breaks when the tension is low. I would
-have thought it would break when the tension is low.
+have thought it would break when the tension is high.
