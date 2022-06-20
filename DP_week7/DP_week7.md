@@ -16,9 +16,12 @@ library(dplyr)
 
 ## Boybands dataset
 
+![funny
+Timberlake](https://media.giphy.com/media/ERbV7iMrV3n6o/giphy.gif)
+
 This dataset was used in a [Pudding
-article](https://pudding.cool/2018/11/boy-bands/). You canaslo find the
-dataset
+article](https://pudding.cool/2018/11/boy-bands/) about boybands. You
+can also find the dataset
 [here](https://github.com/the-pudding/data/blob/master/boybands/boys.csv).
 
 ``` r
