@@ -1,7 +1,7 @@
 ---
 title: "DP_week6"
 author: "Cátia Reis"
-date: "06/04/2022"
+date: "`r Sys.Date()`"
 output: 
   github_document:
     toc: true
@@ -12,51 +12,65 @@ bibliography: ref_DP6.bib
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Paper planes experiment 
-
-### Loading the dataset
-
-For this week's report, the dataset I will take is from an experiment that I did with Bastien Nespolo for a class called "Coordination, representations, communication". We had a condition in which a participant (later, the teacher) would learn how to do a paper plane. The other condition, the teacher had to teach another participant (the student) how to do the paper plane. Finally, we measured the performance of the flight by collecting their time and distance of flight of the paper [planes](https://youtu.be/FlE7mRZImuQ?t=48). 
-
 ```{r, message=F,warning=F}
 library(dplyr)
 library(ggplot2)
+library(knitr)
 ```
 
-Let's load the dataset from the csv file that we have in the week6's folder:
+## The coordination dataset
+
+For this week's report, the dataset I will take is from an experiment that I did with Bastien Nespolo for a class called "Coordination, representations, communication". 
+
+In this experiment, we used a paper plane task to understand if face-to-face interaction had an impact on learning performance. We had a **non-interactive condition** where one participant learned to do a paper plane by themselves by watching a [youtube video tutorial](https://youtu.be/FlE7mRZImuQ?t=48). Then, this same participant taught another participant how to do the paper plane and this constituted our **interactive condition**. 
+
+Let's load the dataset from the csv file that we have in this week 6 folder:
 
 ```{r}
 coordination<-read.table(file="coordination.csv", header=TRUE, sep=";",dec=",") 
+head(coordination) %>% kable()
 ```
 
+Let's look at its structure
 ```{r}
 str(coordination)
 ```
+In the dataset, you can see that there is a *roles* column with two options (teacher,student). The teacher stands for the non-interactive condition while the student stands for the interactive condition. 
 
-In the coordination dataset, you will find 7 numerical variables, 4 integer variables and 1 character variable. 
+We measured performance by throwing the planes 3 times and we recorded their *distance* and *time*. Finally, we also coded what we consider *feedbacks*. We considered that the more feedbacks you had in a student-teacher pair, the more interactive the pair was. We also recorded *learning time* to check if it also impacted the performances. 
 
-**Question 1** : Is there an impact of feedback on the performance of the paper planes ?
+There are 7 numerical variables, 4 integer variables and 1 character variable. 
 
-For this, let's make a plot that allows us to visualize both distance and feedback percentage. 
 
-```{r}
-ggplot(coordination, aes(feedback_percentage, average_distance, colour=roles,label=rownames(coordination))) + geom_point() + labs(y = "Average distance (cm)", x = "Feedback percentage")+  geom_text(hjust = -0.4) 
-```
+### Question 1 
 
-We have an outlier, **student 12** has one of the best performances and has one of the highest percentage of feedback. Nevertheless, we do see there seems to be a tendency where there is a link where the increase of one increases the other.  
-
-**Question 2** : Did the students' plane do a similar performance as their teacher's ? 
+**How similar is the performance of the teachers' planes to the students' planes ?**
 
 ```{r}
 ggplot(coordination, aes(average_distance, average_flying_time, colour=roles,label=rownames(coordination))) + geom_point() + labs(y = "Average Distance (cm)", x = "Average Flying Time (sec)") +  geom_text(hjust = -0.4)
 ```
 
+This plot displays on the x-axis the average time flew by the planes and on the y-axis the average distance that the plane flew. The colors represent the different conditions which allows us to see the difference between the teachers' planes and students' planes. Each pair is composed of an even number (the student) and one uneven number (the teacher). Thus, pair 1 is composed of 1 & 2, pair 2 is 3 & 4, etc. 
 
-We see in this plot that time and distance seem correlated. And to answer question 2, we can see that it is not always the case that the teacher does the same performance as the teacher. For example, teacher 19 has both high distance and time while their student (number 20) is amongst the 'worse' performances of our data. On the other hand, we can see that 17 and 18 or even 15 and 16 did a rather similar performance. 
+For example, we see that teacher 19 has both high distance and time while their student (number 20) has done one of the 'worse' performances of our data. On the other hand, we can see that 17 & 18 or even 15 & 16 did a rather similar performance. 
+
+
+### Question 2 
+
+**Is there an impact of feedback on the performance of the paper planes ?**
+
+
+```{r}
+ggplot(coordination, aes(feedback_percentage, average_distance, colour=roles,label=rownames(coordination))) + geom_point() + labs(y = "Average distance (cm)", x = "Feedback percentage")+  geom_text(hjust = -0.4) 
+```
+
+This plot shows the feedback percentage that a student received from the teacher (x-axis) and it also shows the average distance of the plane (y-axis). We can only see the scores for the students because the teachers had no feedback since they watched a video. 
+
+We have an outlier, **student 12** has one of the best performances and has one of the highest percentage of feedback.   
 
 ---
 nocite: |
-  @wickham_ggplot2_2022
+  @ggplot2,@dplyr,@knitr
 ---
 
 
