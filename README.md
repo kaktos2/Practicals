@@ -6,4 +6,4 @@ This repository is for the Data science class in the Cognitive Science Master.  
 
 Some practicals have bibliographies some do not, I apologize for that. Hopefully, I have cited the most important things. 
 
-I had a lot of fun including gifs here and there. 
+*By the way* DP stands for data practical. 
