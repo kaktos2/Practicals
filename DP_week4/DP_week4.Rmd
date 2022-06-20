@@ -12,68 +12,74 @@ bibliography: ref_DP4.bib
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Data practical 4
-
 ```{r , message=F, warning=F}
 library(readr)
 library(dplyr)
 library(dslabs)
+library(knitr)
 ```
+## Skate music dataset
+
+I load the same dataset that used in week 3. It is the dataset from The Pudding article by @wilber_good_2018. You can find the dataset [here](https://github.com/the-pudding/data/blob/master/skate-music/soundtrack_data.csv) or in the week 3 folder.
 
 ```{r}
 skate <- read.csv("https://raw.githubusercontent.com/the-pudding/data/master/skate-music/soundtrack_data.csv")
 ```
 
+### Filtering
 Now, let's filter the skate dataset to look at "Electronic" music with a total of uses in the videos that is equal or superior to 10.
 ```{r}
 skate_filter<-skate %>% filter(genre=="Electronic",tote>=10)
-skate_filter
+skate_filter %>% kable()
 ```
 
-I am happy to announce that M83 is in fourth place of the most used electronic music in skate videos.  
+From this list, I only know M83. We can see that they are in fourth place of the most used electronic music in skate videos.  
 
 
+### Selecting
 
 Since there are a couple of columns we do not really care about, let's select those that matter. 
 
 ```{r}
 skate_selected <- skate_filter %>% select(artist,tote,genre,year)
 ```
+### Displaying rows
 
 In the following code, the first rows are displayed. 
 ```{r}
-head(skate_selected)
+head(skate_selected) %>% kable()
 ```
 
 
 Now, we can find the last rows. 
 ```{r}
-tail(skate_selected)
+tail(skate_selected) %>% kable()
 ```
 
+### Structure
 Here, you can see the structure of the dataset. 
 ```{r}
 str(skate_selected)
 ```
+### Arranging
 
 Now, let's arrange our data. It will show the rows ordered by "tote" from the highest to the lowest value.
 
 ```{r}
 skate_arranged<-skate_selected %>% arrange(desc(tote,genre))
-skate_arranged
+skate_arranged %>% kable()
 ```
 
 We can see that the most popular electronic artist is Sol. 
 
-<!--Describe any patterns or lack of patterns that you see in the data (note: you can also rearrange the data in other ways if that helps, but look at it and write up in a sentence or two your findings)-->
-
+### Summarizing
 
 In the following code chunk, I decided to take the initial dataset to see the total of times each genre was used in skate videos. 
 ```{r}
 total<-skate %>% group_by(genre) %>% summarize(total_use_of_genre=sum(tote)) %>% arrange(desc(total_use_of_genre))
-total
+total %>% kable()
 ```
-
+### NA
 Let's use a function to see if we have NA's in our data...
 ```{r}
 any(is.na(skate))
@@ -82,18 +88,19 @@ any(is.na(skate))
 If there were NA values in my dataset and I would want to exclude them, I would use "filter(!is.na(name_of_colum_where_there_are_NA))". But as we have seen with the previous formula there are none. 
 
 
-## MERGE! 
+## Joining two datasets 
 
-This is all I could think of when I saw we were going to join two datasets : [a good old Friends reference](https://youtu.be/lP2pz7E7hm4?t=15). 
+![Friends Chandler - 'MERGE'lol](https://i.makeagif.com/media/6-14-2016/35CLe6.gif)
 
-Let's **merge** the `results_us_election_2016` and `murders` datasets. 
+Let's 'merge' the `results_us_election_2016` and `murders` datasets. 
 ```{r}
-head(full_join(results_us_election_2016,murders))
+head(full_join(results_us_election_2016,murders)) %>% kable()
 ```
+I could look at the relationship between region and the votes for clinton, trump and others to understand. This could potentially tell us if there is a certain tendency to vote for either on of the candidates depending on which region you come from. I would probably start by filtering the "region" column. 
 
 ---
 nocite: |
-  @wilber_good_2018,  @irizarry_dslabs_2021,@wickham_readr_2022
+  @irizarry_dslabs_2021,@wickham_readr_2022, @knitr, @dplyr
 ---
 
 # References
