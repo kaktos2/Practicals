@@ -20,7 +20,7 @@ library(knitr)
 
 ## The coordination dataset
 
-For this week's report, the dataset I will take is from an experiment that I did with Bastien Nespolo for a class called "Coordination, representations, communication". 
+For this week's report, the dataset I will take is from an experiment that I did with B. a colleague from the masters for a class called "Coordination, representations, communication". 
 
 In this experiment, we used a paper plane task to understand if face-to-face interaction had an impact on learning performance. We had a **non-interactive condition** where one participant learned to do a paper plane by themselves by watching a [youtube video tutorial](https://youtu.be/FlE7mRZImuQ?t=48). Then, this same participant taught another participant how to do the paper plane and this constituted our **interactive condition**. 
 
