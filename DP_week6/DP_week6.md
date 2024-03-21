@@ -17,7 +17,7 @@ library(knitr)
 ## The coordination dataset
 
 For this week’s report, the dataset I will take is from an experiment
-that I did with Bastien Nespolo for a class called “Coordination,
+that I did with B. a colleague from the masters for a class called “Coordination,
 representations, communication.”
 
 In this experiment, we used a paper plane task to understand if
